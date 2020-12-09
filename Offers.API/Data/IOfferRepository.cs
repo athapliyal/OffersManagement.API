@@ -1,0 +1,24 @@
+﻿using Offers.API.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Offers.API.Data
+{
+    public interface IOfferRepository
+    {
+        /// <summary>
+        ///     Retrieve all offers
+        /// </summary>
+        /// <returns></returns>
+        Task<IList<Offer>> GetOffers();
+
+        /// <summary>
+        ///     Retrieve a specific offer
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<Offer> GetOffer(int id);
+    }
+}
