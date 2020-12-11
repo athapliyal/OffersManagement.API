@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Offers.API.Business;
 using Offers.API.Repository;
 
 namespace Offers.API
@@ -28,6 +29,7 @@ namespace Offers.API
             });
 
             services.AddTransient<IOfferRepository, MockOfferRepository>();
+            services.AddTransient<IOffersBulkFileProcessor, OffersBulkFileProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
