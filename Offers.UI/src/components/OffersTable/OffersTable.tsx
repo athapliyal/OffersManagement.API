@@ -3,10 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import Table from 'react-bootstrap/Table';
 
-import { Offer, OfferCategory, OfferStatus } from './offers.model';
-import { OFFER_TABLE_HEADERS } from './offers.constants';
+import { Offer, OfferCategory, OfferStatus } from './offers-table-model';
+import { OFFER_TABLE_HEADERS } from './offers-table-constants';
 
-import { getOffers } from './offers.service';
+import { getOffers } from './offers-table-service';
 
 const OffersTable: React.FC = () => {
 

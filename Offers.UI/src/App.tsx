@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
-import OffersTable from './components/Offers/OffersTable';
+import OffersTable from './components/OffersTable/OffersTable';
 
 function App() {
 
