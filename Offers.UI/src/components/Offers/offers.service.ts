@@ -1,8 +1,8 @@
 
-import {Offer} from './offers.model';
+import { Offer } from './offers.model';
 
-export const getOffers = async() => { 
+export const getOffers = async () => {
     const response = await fetch('http://localhost:5000/api/offers');
-    const data: Offer[] = await response.json(); 
+    const data: Offer[] = await response.json();
     return data;
 }

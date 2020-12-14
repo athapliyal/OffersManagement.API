@@ -10,5 +10,6 @@ export interface Offer {
     baseWeight: number,
     status: OfferStatus
 }
-enum OfferCategory {Clothing = 1, Food = 2, Sport = 3};
-enum OfferStatus {Published = 1, Draft = 2, Peding = 3};
+
+export enum OfferCategory { Clothing = 1, Food = 2, Sport = 3 };
+export enum OfferStatus { Published = 1, Draft = 2, Peding = 3 };
