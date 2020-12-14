@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Offers.API.Data
+namespace Offers.API.Repository
 {
     public interface IOfferRepository
     {
@@ -20,5 +20,18 @@ namespace Offers.API.Data
         /// <param name="id"></param>
         /// <returns></returns>
         Task<Offer> GetOffer(int id);
+
+        /// <summary>
+        ///     Delete an offer
+        /// </summary>
+        /// <param name="id"></param>
+        Task DeleteOffer(int offerId);
+
+        /// <summary>
+        ///     Checks if an offer exists or not
+        /// </summary>
+        /// <param name="offerId"></param>
+        /// <returns></returns>
+        bool OfferExists(int offerId);
     }
 }

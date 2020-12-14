@@ -3,37 +3,16 @@ using Offers.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Offers.API.Data
+namespace Offers.API.Repository
 {
-    public class MockOfferRepository : IOfferRepository
+    public static class MockOffers
     {
-        public async Task<Offer> GetOffer(int id)
+        public static List<Offer> ListOfOffer { get; set; } = new List<Offer>();
+
+        static MockOffers()
         {
-            // Mock a 2 second delay to show asynchronous behavior
-            await Task.Delay(1000);
-
-            return new Offer
-            {
-                Id = 1,
-                Title = "Offer number 1",
-                Description = "This offer is for a restaurant",
-                Category = OfferCategory.Food,
-                StartDate = new DateTime(2020, 12, 25, 10, 30, 50),
-                EndDate = new DateTime(2021, 01, 25, 12, 00, 00),
-                Status = OfferStatus.Published
-            };
-        }
-
-        public async Task<IList<Offer>> GetOffers()
-        {
-            // Mock a 2 second delay to show asynchronous behavior
-            await Task.Delay(2000);
-
-            var offers = new List<Offer>();
-
-            offers.Add(new Offer
+            ListOfOffer.Add(new Offer
             {
                 Id = 1,
                 Title = "Offer number 1",
@@ -44,7 +23,7 @@ namespace Offers.API.Data
                 Status = OfferStatus.Published
             });
 
-            offers.Add(new Offer
+            ListOfOffer.Add(new Offer
             {
                 Id = 2,
                 Title = "Offer number 2",
@@ -55,7 +34,7 @@ namespace Offers.API.Data
                 Status = OfferStatus.Draft
             });
 
-            offers.Add(new Offer
+            ListOfOffer.Add(new Offer
             {
                 Id = 3,
                 Title = "Offer number 3",
@@ -66,7 +45,7 @@ namespace Offers.API.Data
                 Status = OfferStatus.Pending
             });
 
-            offers.Add(new Offer
+            ListOfOffer.Add(new Offer
             {
                 Id = 4,
                 Title = "Offer number 4",
@@ -77,7 +56,7 @@ namespace Offers.API.Data
                 Status = OfferStatus.Pending
             });
 
-            offers.Add(new Offer
+            ListOfOffer.Add(new Offer
             {
                 Id = 5,
                 Title = "Offer number 5",
@@ -86,9 +65,22 @@ namespace Offers.API.Data
                 StartDate = new DateTime(2020, 12, 25, 10, 30, 50),
                 EndDate = new DateTime(2021, 01, 25, 12, 00, 00),
                 Status = OfferStatus.Published
-            });            
+            });
+        }
 
-            return offers;
+        public static List<Offer> RetrieveMockedOffers()
+        {
+            return ListOfOffer;
+        }
+
+        public static Offer RetrieveMockedOffer(int id)
+        {
+            return ListOfOffer.Where(o => o.Id == id).FirstOrDefault();
+        }
+
+        public static void DeleteMockedOffer(int id)
+        {
+            ListOfOffer.RemoveAll(x => x.Id == id);
         }
     }
 }

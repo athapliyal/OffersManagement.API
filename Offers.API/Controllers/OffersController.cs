@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Offers.API.Data;
-using Offers.API.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Offers.API.Repository;
 using System.Threading.Tasks;
 
 namespace Offers.API.Controllers
@@ -20,7 +16,7 @@ namespace Offers.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IList<Offer>>> GetAllOffers()
+        public async Task<IActionResult> GetAllOffers()
         {
             var offers = await _offerRepository.GetOffers();
 
@@ -28,11 +24,27 @@ namespace Offers.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Offer>> GetOffer(int id)
+        public async Task<IActionResult> GetOffer(int id)
         {
             var offer = await _offerRepository.GetOffer(id);
 
+            if (!_offerRepository.OfferExists(id))
+                return NotFound();
+
             return Ok(offer);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteOffer(int id)
+        {
+            if (_offerRepository.OfferExists(id))
+            {
+                await _offerRepository.DeleteOffer(id);
+
+                return NoContent();
+            }
+
+            return NotFound();
         }
     }
 }
