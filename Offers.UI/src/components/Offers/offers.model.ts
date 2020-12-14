@@ -12,4 +12,4 @@ export interface Offer {
 }
 
 export enum OfferCategory { Clothing = 1, Food = 2, Sport = 3 };
-export enum OfferStatus { Published = 1, Draft = 2, Peding = 3 };
+export enum OfferStatus { Published = 1, Draft = 2, Pending = 3 };
