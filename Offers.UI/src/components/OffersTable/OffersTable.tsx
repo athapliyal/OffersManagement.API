@@ -30,7 +30,7 @@ const OffersTable: React.FC = () => {
         console.log(`Deleting ${props.target.value}`);
     }, [])
 
-    if (offersList && offersList.length !== 0) {
+    if (offersList?.length !== 0) {
         return (
             <Table responsive striped bordered hover>
                 <thead>
