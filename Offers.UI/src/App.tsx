@@ -2,8 +2,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
-import './App.css';
-
 import OffersTable from './components/Offers/OffersTable';
 
 function App() {
