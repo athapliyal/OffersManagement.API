@@ -15,7 +15,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <>
-      <ShowErrors errors={errors} />
+      <LoginFormErrors errors={errors} />
 
       <form className="login-form" onSubmit={onSubmit}>
         <div className="form-group">
@@ -54,7 +54,7 @@ export const LoginForm: React.FC = () => {
   );
 };
 
-const ShowErrors: React.FC<FieldErrors> = ({ errors }) => {
+const LoginFormErrors: React.FC<FieldErrors> = ({ errors }) => {
   return (
     <>
       {errors?.username && (
