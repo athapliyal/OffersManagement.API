@@ -1,5 +1,5 @@
-import OffersTable from '../OffersTable/index';
-import {BulkImportOffer} from '../BulkImportOffer/index';
+import OffersTable from '../../components/OffersTable';
+import {BulkImportOffer} from '../../components/BulkImportOffer';
 
 
 interface IRoutes {
