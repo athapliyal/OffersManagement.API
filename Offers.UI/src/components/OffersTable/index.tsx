@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import Table from 'react-bootstrap/Table';
@@ -11,24 +11,37 @@ import { getOffers } from './offers-table-service';
 const OffersTable: React.FC = () => {
 
     const [offersList, setOffersList] = useState<Offer[]>([]);
+    const mountedRef = useRef(true);
 
-    useEffect(() => {
-        getOffers().then(offers => {
+    const getOfferList = useCallback(() => {
+        return getOffers().then(offers => {
+            // if component is not mounted, cancel 
+            if(!mountedRef.current) return null;
             setOffersList(offers);
         });
     }, [])
+
+    useEffect(() => {
+
+        getOfferList();
+        
+        //component unmount
+        return () => {
+            mountedRef.current = false;
+        }
+    }, [getOfferList])
 
     const headers = useMemo(() => OFFER_TABLE_HEADERS, []);
 
     const onCopy = useCallback((props) => {
         props.preventDefault();
         console.log(`Copying ${props.target.value}`);
-    }, [])
+    }, []);
 
     const onDelete = useCallback((props) => {
         props.preventDefault();
         console.log(`Deleting ${props.target.value}`);
-    }, [])
+    }, []);
 
     if (offersList?.length !== 0) {
         return (
