@@ -1,0 +1,70 @@
+.login-screen {
+    img.campaigns-logo {
+        height: 100px;
+        width: 240px;
+        margin-bottom: 2.5em;
+        align-self: center;      
+    }
+
+    .login-form__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-form__content {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        min-width: 300px;
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;        
+        justify-content: center;   
+
+        .form-group {
+            margin-top: 0.5em;
+
+            label {
+                color: #888;
+            }
+        }
+
+        .forgotten-password-link {
+            text-align: right;
+            margin-top: 0.5em;
+            color: #007aff;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        
+        .login-button {
+            width: 20%;
+            min-width: 100px;
+            margin-top: 1.5em;
+        }
+    }
+
+    h1 {
+        font-size: 1.25em;
+        color: #717171;
+        margin-bottom: 1em;
+    }
+
+    .copyright {
+        margin-top: 1em;
+        text-align: left;
+        font-size: 1em;
+        color: #717171;
+    }
+
+    img.campaigns-bg {
+        max-height: 100vh;
+        width:100%;        
+    }
+}
