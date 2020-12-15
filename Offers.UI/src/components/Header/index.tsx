@@ -1,16 +1,17 @@
 import { Nav, Navbar } from "react-bootstrap";
+import {Link} from 'react-router-dom';
 
 export const Header: React.FC = () => {
     return (
         <div className="header__wrapper">
             <Navbar expand bg="dark" variant="dark">
-                <Navbar.Brand href="#home">Plexure Campaigns</Navbar.Brand>
+                <Link className="navbar-brand" to="/">Plexure Campaigns</Link>
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home"><i className="fas fa-tags"></i> Offers</Nav.Link>
-                    <Nav.Link href="#features"><i className="fas fa-upload"></i> Importer</Nav.Link>
+                    <Link className="nav-link" to="/offers"><i className="fas fa-tags"></i> Offers</Link>
+                    <Link className="nav-link" to="/bulk-import"><i className="fas fa-upload"></i> Importer</Link>
                 </Nav>
                 <Nav>
-                    <Nav.Link href="#deets">Logout</Nav.Link>                    
+                    <Link className="nav-link" to="/logout">Logout</Link>                    
                 </Nav>
             </Navbar>
         </div>
