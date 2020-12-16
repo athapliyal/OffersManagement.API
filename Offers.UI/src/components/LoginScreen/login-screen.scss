@@ -1,8 +1,11 @@
 .login-screen {
+    max-height: 100vh;
+    overflow: hidden;
+
     img.campaigns-logo {
         height: 100px;
         width: 240px;
-        margin-bottom: 2.5em;
+        margin-bottom: 1.5em;
         align-self: center;      
     }
 
@@ -63,8 +66,12 @@
         color: #717171;
     }
 
-    img.campaigns-bg {
-        min-height: 100vh;
-        width:100%;        
+    .campaign-background  {
+        margin: 0;
+        padding: 0;
+        img.campaigns-bg {
+            min-height: 100vh;
+            width:100%;        
+        }
     }
 }

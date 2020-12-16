@@ -21,7 +21,7 @@ export const LoginScreen: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 d-none d-lg-block">
+                    <div className="campaign-background col-md-6 d-none d-lg-block">
                         <img className="campaigns-bg" src={campaignsBg} alt="Logo" />
                     </div>
                 </div>

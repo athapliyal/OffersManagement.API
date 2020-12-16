@@ -1,6 +1,6 @@
-import OffersTable from '../../components/OffersTable';
-import {BulkImportOffer} from '../../components/BulkImportOffer';
-
+import OffersTable from '../components/OffersTable';
+import {BulkImportOffer} from '../components/BulkImportOffer';
+import { LoginScreen } from '../components/LoginScreen';
 
 interface IRoutes {
     path: string,
@@ -12,6 +12,18 @@ interface IRoutes {
 export const routes: IRoutes[] = [
     {
         path: "/",
+        name: "Login",
+        exact: true,
+        component: () => <LoginScreen />
+    },
+    {
+        path: "/logout",
+        name: "Login",
+        exact: true,
+        component: () => <LoginScreen />
+    },
+    {
+        path: "/home",
         name: "Home",
         exact: true,
         component: () => <div>Home</div>
@@ -27,11 +39,5 @@ export const routes: IRoutes[] = [
         name: "Importer",
         exact: false,
         component: () => <BulkImportOffer />
-    },
-    {
-        path: "/logout",
-        name: "Logout",
-        exact: true,
-        component: () => <div>you're logged out</div>
-    },
+    }
 ]
