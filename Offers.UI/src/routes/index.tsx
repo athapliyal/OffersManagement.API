@@ -1,6 +1,7 @@
 import OffersTable from "../components/OffersTable";
 import { BulkImportOffer } from "../components/BulkImportOffer";
 import { LoginScreen } from "../components/LoginScreen";
+import { OfferCalendar } from '../components/OfferCalendar';
 
 interface IRoutes {
   path: string;
@@ -39,5 +40,11 @@ export const routes: IRoutes[] = [
     name: "Importer",
     exact: false,
     component: () => <BulkImportOffer />,
+  },
+  {
+    path: "/offer-calendar",
+    name: "OfferCalendar",
+    exact: true,
+    component: () => <OfferCalendar />,
   },
 ];

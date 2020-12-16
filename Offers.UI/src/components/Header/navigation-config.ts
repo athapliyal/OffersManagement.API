@@ -23,5 +23,11 @@ export const navigationItems: NavigationItem[] = [
         url: "/bulk-import",
         icon: "fas fa-upload",
         className: "nav-link"
+    },
+    {
+        title: "Calendar",
+        url: "/offer-calendar",
+        icon: "fas fa-calendar-times",
+        className: "nav-link"
     }
 ]
