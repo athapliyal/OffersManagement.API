@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import { navigationItems } from "./navigation-config";
 
+import './header.scss';
+
 export const Header: React.FC = () => {
   return (
     <div className="header__wrapper">

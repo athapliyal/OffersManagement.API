@@ -1,10 +1,10 @@
-import React from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import React from "react";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
-import './App.scss';
+import "./App.scss";
 
-import { Header } from '../Header';
-import { routes } from '../../routes';
+import { Header } from "../Header";
+import { routes } from "../../routes";
 
 function App() {
   // this should come from the context
@@ -17,7 +17,7 @@ function App() {
         <Route>
           <Switch>
             {routes.map((route, index) => {
-              return <Route key={index} path={route.path} exact={route.exact} children={<route.component />} />
+              return <Route key={index} path={route.path} exact={route.exact} children={<route.component />} />;
             })}
           </Switch>
         </Route>

@@ -1,6 +1,11 @@
+import React, { Suspense, lazy } from 'react';
+
 import OffersTable from "../components/OffersTable";
 import { BulkImportOffer } from "../components/BulkImportOffer";
 import { LoginScreen } from "../components/LoginScreen";
+import { Preloader } from '../components/Preloader';
+
+const OfferCalendar = lazy(() => import('../components/OfferCalendar'));
 
 interface IRoutes {
   path: string;
@@ -39,5 +44,11 @@ export const routes: IRoutes[] = [
     name: "Importer",
     exact: false,
     component: () => <BulkImportOffer />,
+  },
+  {
+    path: "/offer-calendar",
+    name: "OfferCalendar",
+    exact: true,
+    component: () => <Suspense fallback={<Preloader />}><OfferCalendar /></Suspense>,
   },
 ];
