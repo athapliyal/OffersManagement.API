@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { BulkImportHeader } from './BulkImportHeader';
 import { BulkImportDropzone } from './BulkImportDropzone';
 import { BulkImportInstructions } from './BulkImportInstructions';
