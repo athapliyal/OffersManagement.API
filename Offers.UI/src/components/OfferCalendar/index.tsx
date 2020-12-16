@@ -7,7 +7,7 @@ import { INITIAL_EVENTS } from "./event-utils";
 
 import "./calendar.scss";
 
-export const OfferCalendar: React.FC = () => {
+const OfferCalendar: React.FC = () => {
   return (
     <div className="offer-calendar__wrapper">
       <div className="offer-calendar__body">
@@ -30,3 +30,5 @@ export const OfferCalendar: React.FC = () => {
 const handleEventClick = (clickInfo: EventClickArg) => {
   alert(clickInfo.event);
 };
+
+export default OfferCalendar;
