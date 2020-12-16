@@ -8,7 +8,7 @@ import { routes } from '../../routes';
 
 function App() {
   // this should come from the context
-  const isAuthorised = false;
+  const isAuthorised = true;
 
   return (
     <>

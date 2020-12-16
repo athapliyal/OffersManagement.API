@@ -1,19 +1,47 @@
-import { Nav, Navbar } from "react-bootstrap";
-import {Link} from 'react-router-dom';
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+
+import { navigationItems } from "./navigation-config";
 
 export const Header: React.FC = () => {
-    return (
-        <div className="header__wrapper">
-            <Navbar expand bg="dark" variant="dark">
-                <Link className="navbar-brand" to="/">Plexure Campaigns</Link>
-                <Nav className="mr-auto">
-                    <Link className="nav-link" to="/offers"><i className="fas fa-tags"></i> Offers</Link>
-                    <Link className="nav-link" to="/bulk-import"><i className="fas fa-upload"></i> Importer</Link>
-                </Nav>
-                <Nav>
-                    <Link className="nav-link" to="/logout">Logout</Link>                    
-                </Nav>
-            </Navbar>
-        </div>
-    );
+  return (
+    <div className="header__wrapper">
+      <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            {navigationItems.map((item) => (
+              <Link className={item.className} to={item.url}>
+                <i className={item.icon}></i> {item.title}
+              </Link>
+            ))}
+          </Nav>    
+          <Nav>
+            <LanguageDropdown />
+            <Link className="nav-link" to="/logout">
+              Logout
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </div>
+  );
 };
+
+const LanguageDropdown: React.FC = () => {
+  const { i18n } = useTranslation();
+
+  return (
+    <NavDropdown title={<LanguageSelector />} id="basic-nav-dropdown">
+      <NavDropdown.Item onClick={() => i18n.changeLanguage('en')}>English</NavDropdown.Item>
+      <NavDropdown.Item onClick={() => i18n.changeLanguage('jp')}>Japanese</NavDropdown.Item>
+    </NavDropdown>
+  );
+}
+
+const LanguageSelector: React.FC = () => (
+  <>
+    <i className="fas fa-globe"></i>
+  </>
+);
