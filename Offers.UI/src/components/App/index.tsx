@@ -1,26 +1,29 @@
 import React from 'react';
+import {Switch, Route, BrowserRouter as Router} from 'react-router-dom';
 
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-
-import { BulkImportOffer } from '../BulkImportOffer';
-import { LoginScreen } from '../LoginScreen';
-
-import { Header } from '../Header';
-import OffersTable from '../OffersTable';
 
 import './App.scss';
+
+import {Header} from '../Header';
+import {routes} from '../Routes';
+
+
 
 function App() {
 
   return (
     <>
-      <LoginScreen />      
+      <Router>
+          <Header />
+          <Route>
+              <Switch>
+                  {routes.map((route, index) => {
+                      return <Route key={index} path={route.path} exact={route.exact} children={<route.component/>}/>
+                  })}
+              </Switch>  
+          </Route>
+      </Router>
     </>
-    
-    // <Header />
-    // <OffersTable />
-    // <BulkImportOffer />
   );
 }
 
