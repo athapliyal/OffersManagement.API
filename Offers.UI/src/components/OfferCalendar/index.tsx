@@ -3,6 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
+// TODO: These events are offers that will eventually come as global state because the same offer information is used in different components
 import { INITIAL_EVENTS } from "./event-utils";
 
 import "./calendar.scss";

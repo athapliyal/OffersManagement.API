@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import Button from "react-bootstrap/Button";
-import Spinner from "react-bootstrap/Spinner";
 import Table from "react-bootstrap/Table";
+
+import { Preloader } from '../Preloader';
 
 import { Offer, OfferCategory, OfferStatus } from "./offers-table-model";
 import { OFFER_TABLE_HEADERS } from "./offers-table-constants";
@@ -78,7 +79,7 @@ const OffersTable: React.FC = () => {
     );
   }
 
-  return <Spinner animation="border" role="status"></Spinner>;
+  return <Preloader />;
 };
 
 export default OffersTable;

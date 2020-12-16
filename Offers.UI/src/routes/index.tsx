@@ -3,6 +3,7 @@ import React, { Suspense, lazy } from 'react';
 import OffersTable from "../components/OffersTable";
 import { BulkImportOffer } from "../components/BulkImportOffer";
 import { LoginScreen } from "../components/LoginScreen";
+import { Preloader } from '../components/Preloader';
 
 const OfferCalendar = lazy(() => import('../components/OfferCalendar'));
 
@@ -48,6 +49,6 @@ export const routes: IRoutes[] = [
     path: "/offer-calendar",
     name: "OfferCalendar",
     exact: true,
-    component: () => <Suspense fallback={<div>Loading...</div>}><OfferCalendar /></Suspense>,
+    component: () => <Suspense fallback={<Preloader />}><OfferCalendar /></Suspense>,
   },
 ];
