@@ -6,29 +6,36 @@ import { navigationItems } from "./navigation-config";
 
 import './header.scss';
 
+import {useAuthState} from '../../context/Authentication';
+
 export const Header: React.FC = () => {
-  return (
-    <div className="header__wrapper">
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            {navigationItems.map((item) => (
-              <Link className={item.className} to={item.url}>
-                <i className={item.icon}></i> {item.title}
-              </Link>
-            ))}
-          </Nav>    
-          <Nav>
-            <LanguageDropdown />
-            <Link className="nav-link" to="/logout">
-              Logout
-            </Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    </div>
-  );
+  
+  const{authState} = useAuthState();
+
+  if(authState.isAuthenticated) {
+    return (
+      <div className="header__wrapper">
+        <Navbar bg="dark" variant="dark" expand="lg">
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              {navigationItems.map((item) => (
+                <Link className={item.className} to={item.url}>
+                  <i className={item.icon}></i> {item.title}
+                </Link>
+              ))}
+            </Nav>    
+            <Nav>
+              <LanguageDropdown />
+              <Link className="nav-link" to="/">Logout</Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
+    );
+  }
+
+  return null;
 };
 
 const LanguageDropdown: React.FC = () => {

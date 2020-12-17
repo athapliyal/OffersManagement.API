@@ -12,6 +12,7 @@ interface IRoutes {
   exact: boolean;
   name: string;
   component: any;
+  isPrivateRoute: boolean;
 }
 
 export const routes: IRoutes[] = [
@@ -20,35 +21,27 @@ export const routes: IRoutes[] = [
     name: "Login",
     exact: true,
     component: () => <LoginScreen />,
-  },
-  {
-    path: "/logout",
-    name: "Login",
-    exact: true,
-    component: () => <LoginScreen />,
-  },
-  {
-    path: "/home",
-    name: "Home",
-    exact: true,
-    component: () => <OffersTable />,
+    isPrivateRoute: false,
   },
   {
     path: "/offers",
     name: "Offers",
     exact: false,
     component: () => <OffersTable />,
+    isPrivateRoute: true,
   },
   {
     path: "/bulk-import",
     name: "Importer",
     exact: false,
     component: () => <BulkImportOffer />,
+    isPrivateRoute: true,
   },
   {
     path: "/offer-calendar",
     name: "OfferCalendar",
     exact: true,
     component: () => <Suspense fallback={<Preloader />}><OfferCalendar /></Suspense>,
+    isPrivateRoute: true,
   },
 ];
