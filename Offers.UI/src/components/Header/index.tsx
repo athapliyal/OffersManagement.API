@@ -6,11 +6,11 @@ import { navigationItems } from "./navigation-config";
 
 import './header.scss';
 
-import {useAuthState} from '../../context/Authentication';
+import {useAuthState} from '../../context/Authentication/Authentication';
 
 export const Header: React.FC = () => {
   
-  const{authState} = useAuthState();
+  const authState = useAuthState();
 
   if(authState.isAuthenticated) {
     return (

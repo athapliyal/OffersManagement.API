@@ -5,8 +5,9 @@ import "./App.scss";
 
 import { Header } from "../Header";
 import { routes } from "../../routes";
-import {AuthStateProvider} from '../Authentication/index';
-import {PrivateRouteWrapper} from '../Authentication/PrivateRouteWrapper';
+
+import {AuthStateProvider} from '../../context/Authentication/Authentication';
+import {AuthRoute} from '../Authentication/index';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
                   <Switch>
                     {routes.map((route, index) => {
                       if(route.isPrivateRoute) {
-                        return <PrivateRouteWrapper key={index}>{route.component}</PrivateRouteWrapper>
+                        return <AuthRoute key={index} {...route}>{route.component}</AuthRoute>
                       } else {
                         return <Route key={index} path={route.path} exact={route.exact} children={<route.component />} />
                       }

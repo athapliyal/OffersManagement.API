@@ -15,11 +15,17 @@ interface IRoutes {
   isPrivateRoute: boolean;
 }
 
-export const routes: IRoutes[] = [
-  {
+export const routes: IRoutes[] = [{
     path: "/",
-    name: "Login",
+    name: "Home",
     exact: true,
+    component: () => <div>this is home. should be hidden</div>,
+    isPrivateRoute: true,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    exact: false,
     component: () => <LoginScreen />,
     isPrivateRoute: false,
   },
@@ -40,7 +46,7 @@ export const routes: IRoutes[] = [
   {
     path: "/offer-calendar",
     name: "OfferCalendar",
-    exact: true,
+    exact: false,
     component: () => <Suspense fallback={<Preloader />}><OfferCalendar /></Suspense>,
     isPrivateRoute: true,
   },

@@ -1,11 +1,12 @@
-import React, {useReducer} from 'react';
+import React, {useReducer } from 'react';
 import { Alert, Button } from "react-bootstrap";
 import { FieldErrors, useForm } from "react-hook-form";
+import {useHistory} from 'react-router-dom';
+
+import { useAuthState, authReducer } from '../../context/Authentication/Authentication';
+import { SET_IS_AUTHENTICATED_SUCCESS } from '../../context/Authentication/authentication-constants';
 
 import {login} from './login-service';
-
-import {authReducer, useAuthState} from '../../context/Authentication'
-import { SET_IS_AUTHENTICATED_SUCCESS } from '../../context/authentication-constants';
 
 type FormData = {
     username: string;
@@ -13,17 +14,22 @@ type FormData = {
 };
 
 export const LoginForm: React.FC = () => {
-  const {authState} = useAuthState();
-  const [, dispatch] = useReducer(authReducer, authState);
 
   const { register, setValue, handleSubmit, errors } = useForm<FormData>();
 
-  const onSubmit = handleSubmit(({ username, password }) => {
-    login(username, password).then((someCookie: any) => {
-      dispatch({type: SET_IS_AUTHENTICATED_SUCCESS, value: someCookie });
-    }).catch(() => {
-      console.log("some error");
-    })
+  const authState = useAuthState();
+  const [,dispatch] = useReducer(authReducer, authState);
+
+  const history = useHistory();
+  const onSubmit = handleSubmit(({username, password }) => {
+    login(username, password)
+      .then((someCookie: any) => {
+        dispatch({type: SET_IS_AUTHENTICATED_SUCCESS, value: {authCookie: someCookie, isAuthenticated: true}});
+      }).then(() => {
+        // home
+        history.push('/')
+      })
+      .catch(() => {console.log("some error");})
   });
 
   return (
