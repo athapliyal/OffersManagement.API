@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import {useAuthState} from '../../context/Authentication/Authentication';
+import {AuthContext} from '../../context/Authentication/Authentication';
 
 export const AuthRoute: React.FC = ({children}) => {
-  const authState = useAuthState();
-    console.log(JSON.stringify(authState));
+
+    const {authState} = useContext(AuthContext);
+
+    console.log( 'AuthenticationWrapper ' + JSON.stringify(authState.authState));
     return (
-        <Route render={({ location }) => authState.isAuthenticated 
+        <Route render={({ location }) => authState.authState.isAuthenticated
         ? (children) 
         : (<Redirect to={{pathname: "/login", state: { from: location }}} />)
       }

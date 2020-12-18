@@ -10,8 +10,6 @@ export interface IAuthenticationState {
     isAuthenticated: boolean,
     /** cookie */
     authCookie: string,
-
-    setAuthState: () => void
 }
 
 interface IAuthenticationSuccess extends IAction {
@@ -22,14 +20,9 @@ interface IAuthenticationSuccess extends IAction {
     };
 } 
 
-const initialAuthState: IAuthenticationState = {
+const initialAuthState: any = {
     isAuthenticated: false,
-    authCookie: "",
-    setAuthState: () => {}
-}
-
-const initialContext: {authState: IAuthenticationState} = {
-    authState: initialAuthState
+    authCookie: ""
 }
 
 export const AuthContext = createContext(initialAuthState);
@@ -49,9 +42,13 @@ export const authReducer = (state: IAuthenticationState, action: AuthActionTypes
 }
 
 export const AuthStateProvider: React.FC = (props) => {
-    const authState = useAuthState();
+
+    const [authState, dispatch] = useReducer(authReducer, initialAuthState);
+
+    console.log('AuthState ' + JSON.stringify(authState));
+
     return (
-        <AuthContext.Provider value={authState}>
+        <AuthContext.Provider value={{authState, dispatch}}>
             {props.children}
         </AuthContext.Provider>
     )

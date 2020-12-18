@@ -1,3 +1,4 @@
+import {useContext} from 'react';
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
@@ -6,13 +7,13 @@ import { navigationItems } from "./navigation-config";
 
 import './header.scss';
 
-import {useAuthState} from '../../context/Authentication/Authentication';
+import {AuthContext} from '../../context/Authentication/Authentication';
 
 export const Header: React.FC = () => {
   
-  const authState = useAuthState();
+  const {authState} = useContext(AuthContext);
 
-  if(authState.isAuthenticated) {
+  if(authState.authState.isAuthenticated) {
     return (
       <div className="header__wrapper">
         <Navbar bg="dark" variant="dark" expand="lg">

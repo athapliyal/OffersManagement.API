@@ -1,10 +1,12 @@
-import React, {useReducer } from 'react';
+import React, {useReducer, useContext } from 'react';
 import { Alert, Button } from "react-bootstrap";
 import { FieldErrors, useForm } from "react-hook-form";
 import {useHistory} from 'react-router-dom';
 
 import { useAuthState, authReducer } from '../../context/Authentication/Authentication';
 import { SET_IS_AUTHENTICATED_SUCCESS } from '../../context/Authentication/authentication-constants';
+
+import {AuthContext} from '../../context/Authentication/Authentication';
 
 import {login} from './login-service';
 
@@ -17,14 +19,16 @@ export const LoginForm: React.FC = () => {
 
   const { register, setValue, handleSubmit, errors } = useForm<FormData>();
 
-  const authState = useAuthState();
-  const [,dispatch] = useReducer(authReducer, authState);
+  const authContext = useContext(AuthContext);
+
+  console.log('LoginForm AuthContext' +JSON.stringify(authContext));
 
   const history = useHistory();
+
   const onSubmit = handleSubmit(({username, password }) => {
     login(username, password)
       .then((someCookie: any) => {
-        dispatch({type: SET_IS_AUTHENTICATED_SUCCESS, value: {authCookie: someCookie, isAuthenticated: true}});
+        authContext.dispatch({type: SET_IS_AUTHENTICATED_SUCCESS, value: {authCookie: someCookie, isAuthenticated: true}});
       }).then(() => {
         // home
         history.push('/')
