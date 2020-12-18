@@ -19,7 +19,7 @@ function App() {
                   <Switch>
                     {routes.map((route, index) => {
                       if(route.isPrivateRoute) {
-                        return <AuthRoute key={index} {...route}>{route.component}</AuthRoute>
+                        return <AuthRoute key={index} path={route.path} exact={route.exact} children={<route.component />}/>
                       } else {
                         return <Route key={index} path={route.path} exact={route.exact} children={<route.component />} />
                       }

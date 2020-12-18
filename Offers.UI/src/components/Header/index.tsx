@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
   
   const {authState} = useContext(AuthContext);
 
-  if(authState.authState.isAuthenticated) {
+  if(authState.isAuthenticated) {
     return (
       <div className="header__wrapper">
         <Navbar bg="dark" variant="dark" expand="lg">
