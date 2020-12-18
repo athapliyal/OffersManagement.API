@@ -36,10 +36,7 @@ export const authReducer = (state: IAuthenticationState, action: AuthActionTypes
 }
 
 export const AuthStateProvider: React.FC = (props) => {
-
-    const [authState, dispatch] = useReducer(authReducer, initialAuthState);
-
-    console.log('AuthState ' + JSON.stringify(authState));
+    const [authState, dispatch] = useReducer(authReducer, initialAuthState);   
 
     return (
         <AuthContext.Provider value={{authState, dispatch}}>

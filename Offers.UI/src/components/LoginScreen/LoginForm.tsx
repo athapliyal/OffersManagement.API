@@ -28,6 +28,7 @@ export const LoginForm: React.FC = () => {
         // go to home page if authenticated
         history.push('/')
       })
+      // can show toaster here with an error message
       .catch(() => { console.log("some error"); })
   });
 
