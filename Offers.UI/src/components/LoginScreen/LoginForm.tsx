@@ -3,11 +3,9 @@ import { Alert, Button } from "react-bootstrap";
 import { FieldErrors, useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 
-import { SET_IS_AUTHENTICATED_SUCCESS } from '../../store/authentication/auth-constants';
+import { AuthContext, SET_IS_AUTHENTICATED_SUCCESS } from '../../store/authentication';
 
-import { AuthContext } from '../../store/authentication/auth-context';
-
-import { login } from './login-service';
+import { loginService } from './login-service';
 
 type FormData = {
   username: string;
@@ -21,8 +19,8 @@ export const LoginForm: React.FC = () => {
   const { register, setValue, handleSubmit, errors } = useForm<FormData>();
 
   const onSubmit = handleSubmit(({ username, password }) => {
-    login(username, password)
-      .then((someCookie: any) => {
+    loginService(username, password)
+      .then(() => {
         authContext.dispatch({ type: SET_IS_AUTHENTICATED_SUCCESS, value: { isAuthenticated: true } });
 
         // go to home page if authenticated

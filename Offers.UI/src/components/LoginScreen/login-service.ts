@@ -1,5 +1,5 @@
 
-export const login = async (username:string, password:string) => {
+export const loginService = async (username:string, password:string) => {
     // simulate backend request
     var request = new Promise((resolve, reject) => {
         setTimeout(() => {

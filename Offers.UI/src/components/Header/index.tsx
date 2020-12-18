@@ -1,16 +1,19 @@
 import { useContext } from 'react';
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useTranslation } from 'react-i18next';
 
+import { AuthContext, SET_IS_AUTHENTICATED_FAIL } from '../../store/authentication';
 import { navigationItems } from "./navigation-config";
 
 import './header.scss';
 
-import { AuthContext } from '../../store/authentication/auth-context';
-
 export const Header: React.FC = () => {
-  const { authState } = useContext(AuthContext);
+  const { authState, dispatch } = useContext(AuthContext);
+
+  const logoutUser = () => {
+    dispatch({ type: SET_IS_AUTHENTICATED_FAIL });
+  }
 
   if (authState.isAuthenticated) {
     return (
@@ -27,14 +30,14 @@ export const Header: React.FC = () => {
             </Nav>
             <Nav>
               <LanguageDropdown />
-              <Link className="nav-link" to="/">Logout</Link>
+              <Link className="nav-link" to="/login" onClick={() => logoutUser()}>Logout</Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
       </div>
     );
   }
-  
+
   return null;
 };
 
