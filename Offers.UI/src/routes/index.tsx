@@ -19,7 +19,7 @@ export const routes: IRoutes[] = [{
     path: "/",
     name: "Home",
     exact: true,
-    component: () => <div>Welcome home!!!</div>,
+    component: () => <OffersTable />,
     isPrivateRoute: true,
   },
   {

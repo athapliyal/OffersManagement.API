@@ -6,8 +6,8 @@ import "./App.scss";
 import { Header } from "../Header";
 import { routes } from "../../routes";
 
-import { AuthStateProvider } from '../../context/Authentication';
-import { AuthRoute } from '../../authentication';
+import { AuthStateProvider } from '../../store/authentication';
+import { AuthRoute } from '../Authentication';
 
 function App() {
   return (
