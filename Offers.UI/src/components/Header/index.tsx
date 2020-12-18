@@ -7,7 +7,7 @@ import { navigationItems } from "./navigation-config";
 
 import './header.scss';
 
-import {AuthContext} from '../../context/Authentication/Authentication';
+import {AuthContext} from '../../context/Authentication';
 
 export const Header: React.FC = () => {
   

@@ -6,26 +6,25 @@ import "./App.scss";
 import { Header } from "../Header";
 import { routes } from "../../routes";
 
-import {AuthStateProvider} from '../../context/Authentication/Authentication';
-import {AuthRoute} from '../Authentication/index';
+import { AuthStateProvider } from '../../context/Authentication';
+import { AuthRoute } from '../../authentication';
 
 function App() {
   return (
     <>
       <AuthStateProvider>
         <Router>
-            <Header />
-              <Route>        
-                  <Switch>
-                    {routes.map((route, index) => {
-                      if(route.isPrivateRoute) {
-                        return <AuthRoute key={index} path={route.path} exact={route.exact} children={<route.component />}/>
-                      } else {
-                        return <Route key={index} path={route.path} exact={route.exact} children={<route.component />} />
-                      }
-                    })}
-                  </Switch>
-              </Route>
+          <Header />
+          <Route>
+            <Switch>
+              {routes.map((route, index) => {
+                return route.isPrivateRoute ?
+                  <AuthRoute key={index} path={route.path} exact={route.exact} children={<route.component />} />
+                  :
+                  <Route key={index} path={route.path} exact={route.exact} children={<route.component />} />
+              })}
+            </Switch>
+          </Route>
         </Router>
       </AuthStateProvider>
     </>

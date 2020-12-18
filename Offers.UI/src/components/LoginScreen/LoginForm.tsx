@@ -1,39 +1,34 @@
-import React, {useReducer, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Alert, Button } from "react-bootstrap";
 import { FieldErrors, useForm } from "react-hook-form";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-import { useAuthState, authReducer } from '../../context/Authentication/Authentication';
 import { SET_IS_AUTHENTICATED_SUCCESS } from '../../context/Authentication/authentication-constants';
 
-import {AuthContext} from '../../context/Authentication/Authentication';
+import { AuthContext } from '../../context/Authentication';
 
-import {login} from './login-service';
+import { login } from './login-service';
 
 type FormData = {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 };
 
 export const LoginForm: React.FC = () => {
+  const history = useHistory();
+  const authContext = useContext(AuthContext);
 
   const { register, setValue, handleSubmit, errors } = useForm<FormData>();
 
-  const authContext = useContext(AuthContext);
-
-  console.log('LoginForm AuthContext' +JSON.stringify(authContext));
-
-  const history = useHistory();
-
-  const onSubmit = handleSubmit(({username, password }) => {
+  const onSubmit = handleSubmit(({ username, password }) => {
     login(username, password)
       .then((someCookie: any) => {
-        authContext.dispatch({type: SET_IS_AUTHENTICATED_SUCCESS, value: {authCookie: someCookie, isAuthenticated: true}});
-      }).then(() => {
-        // home
+        authContext.dispatch({ type: SET_IS_AUTHENTICATED_SUCCESS, value: { isAuthenticated: true } });
+
+        // go to home page if authenticated
         history.push('/')
       })
-      .catch(() => {console.log("some error");})
+      .catch(() => { console.log("some error"); })
   });
 
   return (
