@@ -3,9 +3,9 @@ import { Alert, Button } from "react-bootstrap";
 import { FieldErrors, useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 
-import { SET_IS_AUTHENTICATED_SUCCESS } from '../../context/Authentication/authentication-constants';
+import { SET_IS_AUTHENTICATED_SUCCESS } from '../../store/authentication/auth-constants';
 
-import { AuthContext } from '../../context/Authentication';
+import { AuthContext } from '../../store/authentication/auth-context';
 
 import { login } from './login-service';
 

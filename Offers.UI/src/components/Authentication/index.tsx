@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { AuthContext } from '../context/Authentication';
+import { AuthContext } from '../../store/authentication/auth-context';
 
 interface IAuthRoute {
   key: number,
