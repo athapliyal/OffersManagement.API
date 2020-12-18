@@ -12,43 +12,42 @@ interface IRoutes {
   exact: boolean;
   name: string;
   component: any;
+  isPrivateRoute: boolean;
 }
 
-export const routes: IRoutes[] = [
-  {
+export const routes: IRoutes[] = [{
     path: "/",
-    name: "Login",
-    exact: true,
-    component: () => <LoginScreen />,
-  },
-  {
-    path: "/logout",
-    name: "Login",
-    exact: true,
-    component: () => <LoginScreen />,
-  },
-  {
-    path: "/home",
     name: "Home",
     exact: true,
-    component: () => <OffersTable />,
+    component: () => <div>Welcome home!!!</div>,
+    isPrivateRoute: true,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    exact: false,
+    component: () => <LoginScreen />,
+    isPrivateRoute: false,
   },
   {
     path: "/offers",
     name: "Offers",
     exact: false,
     component: () => <OffersTable />,
+    isPrivateRoute: true,
   },
   {
     path: "/bulk-import",
     name: "Importer",
     exact: false,
     component: () => <BulkImportOffer />,
+    isPrivateRoute: true,
   },
   {
     path: "/offer-calendar",
     name: "OfferCalendar",
-    exact: true,
+    exact: false,
     component: () => <Suspense fallback={<Preloader />}><OfferCalendar /></Suspense>,
+    isPrivateRoute: true,
   },
 ];
