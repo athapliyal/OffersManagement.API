@@ -9,15 +9,15 @@ namespace Offers.API.Business
     public interface IBulkFileProcessor<T>
     {
         /// <summary>
-        ///     Uploads the file to storage
+        ///     Uploads the file to storage and return path
         /// </summary>
         /// <param name="file"></param>
-        void UploadFileToStorage(OffersBulkImport file);
+        Task<string> UploadFileToStorage(OffersBulkImport file);
 
         /// <summary>
         ///     Processes the uploaded file and maps it to the model type
         /// </summary>
         /// <returns></returns>
-        List<T> ProcessUploadedFile(string filePath);
+        Task ProcessUploadedFile(string filePath);
     }
 }

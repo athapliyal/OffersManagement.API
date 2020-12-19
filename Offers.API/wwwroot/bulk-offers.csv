@@ -1,0 +1,6 @@
+Id,Title,Description,StartDate,EndDate,Category,Status
+1,Some Offer 1,Some Offer Description 1, 23/12/2020, 23/01/2021, Clothing, Pending
+2,Some Offer 2,Some Offer Description 2, 13/12/2020, 13/01/2021, Sports, Draft
+3,Some Offer 3,Some Offer Description 3, 01/03/2020, 01/05/2021, Sports, Published
+4,Some Offer 4,Some Offer Description 4, 11/04/2020, 11/05/2021, Food, Published
+5,Some Offer 5,Some Offer Description 5, 19/03/2020, 16/04/2020, Food, Draft

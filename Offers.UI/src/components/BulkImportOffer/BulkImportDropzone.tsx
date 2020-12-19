@@ -2,12 +2,14 @@ import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useTranslation } from 'react-i18next';
 
+import { bulkImportService } from '../../services/bulk-import-service';
+
 export const BulkImportDropzone: React.FC = () => {
   const { t } = useTranslation();
 
   const onDrop = useCallback((acceptedFiles) => {
     // call API here to upload file
-    alert("files dropped");
+    bulkImportService.uploadBulkImportFile(acceptedFiles[0]);
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop, maxFiles: 1 });

@@ -1,6 +1,9 @@
-﻿using Offers.API.Models;
+﻿using CsvHelper;
+using Offers.API.Models;
+using Offers.API.Repository;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,17 +12,42 @@ namespace Offers.API.Business
 {
     public class OffersBulkFileProcessor : IOffersBulkFileProcessor
     {
-        public List<Offer> ProcessUploadedFile(string filePath)
+        private readonly IOfferRepository _offerRepository;
+
+        public OffersBulkFileProcessor(IOfferRepository offerRepository)
         {
-            throw new NotImplementedException();
+            _offerRepository = offerRepository;
         }
 
-        public void UploadFileToStorage(OffersBulkImport file)
+        public async Task ProcessUploadedFile(string filePath)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.FileName);
+            using (var reader = new StreamReader(filePath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                csv.Configuration.CultureInfo = CultureInfo.GetCultureInfo("en-AU");
+                var offers = csv.GetRecords<Offer>();
 
-            using (Stream stream = new FileStream(path, FileMode.Create))
-                file.OffersBulkImportFile.CopyTo(stream);
+                await _offerRepository.BulkUploadOffers(offers.ToList());
+            }
+        }
+
+        public async Task<string> UploadFileToStorage(OffersBulkImport file)
+        {
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.OffersBulkImportFile.FileName);
+
+            try
+            {
+                using (Stream stream = new FileStream(path, FileMode.Create))
+                    await file.OffersBulkImportFile.CopyToAsync(stream);
+
+                return Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.OffersBulkImportFile.FileName);
+            }
+            catch (FileLoadException ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return null;
         }
     }
 }

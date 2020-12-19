@@ -1,6 +1,6 @@
-import { Offer } from './offers-table-model';
+import { Offer } from '../models/OfferModel';
 
-import { OFFERS_API_BASE_URL } from './offers-table-constants';
+import { OFFERS_API_BASE_URL } from './service-constants';
 
 export const getOffers = async () => {
     const response = await fetch(`${OFFERS_API_BASE_URL}/offers`);

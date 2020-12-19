@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import { AuthContext, SET_IS_AUTHENTICATED_SUCCESS } from '../../store/authentication';
 
-import { loginService } from './login-service';
+import { loginService } from '../../services/login-service';
 
 type FormData = {
   username: string;

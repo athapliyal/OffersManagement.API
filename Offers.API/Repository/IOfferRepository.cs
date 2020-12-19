@@ -22,6 +22,13 @@ namespace Offers.API.Repository
         Task<Offer> GetOffer(int id);
 
         /// <summary>
+        ///     Upload an offer
+        /// </summary>
+        /// <param name="offer"></param>
+        /// <returns></returns>
+        Task BulkUploadOffers(List<Offer> offer);
+
+        /// <summary>
         ///     Delete an offer
         /// </summary>
         /// <param name="id"></param>

@@ -4,10 +4,10 @@ import Table from "react-bootstrap/Table";
 
 import { Preloader } from '../Preloader';
 
-import { Offer, OfferCategory, OfferStatus } from "./offers-table-model";
+import { Offer, OfferCategory, OfferStatus } from "../../models/OfferModel";
 import { OFFER_TABLE_HEADERS } from "./offers-table-constants";
 
-import { getOffers } from "./offers-table-service";
+import { getOffers } from "../../services/offers-service";
 
 const OffersTable: React.FC = () => {
   const [offersList, setOffersList] = useState<Offer[]>([]);

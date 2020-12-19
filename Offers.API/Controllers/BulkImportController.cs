@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CsvHelper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Offers.API.Business;
 using Offers.API.Models;
 using System;
+using System.Globalization;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Offers.API.Controllers
 {
@@ -11,21 +15,26 @@ namespace Offers.API.Controllers
     public class BulkImportController : ControllerBase
     {
         private readonly IOffersBulkFileProcessor _offersBulkFileProcessor;
-        private readonly ILogger<BulkImportController> _logger;        
+        private readonly ILogger<BulkImportController> _logger;
 
         public BulkImportController(IOffersBulkFileProcessor offersBulkFileProcessor, ILogger<BulkImportController> logger)
-        {            
+        {
             _offersBulkFileProcessor = offersBulkFileProcessor;
             _logger = logger;
         }
 
         [Route("offers")]
         [HttpPost]
-        public ActionResult PostBulkOffers([FromForm] OffersBulkImport file)
+        public async Task<ActionResult> PostBulkOffers([FromForm] OffersBulkImport file)
         {
             try
             {
-                _offersBulkFileProcessor.UploadFileToStorage(file);                
+                // Upload file
+                var fileLocation = await _offersBulkFileProcessor.UploadFileToStorage(file);
+
+                // Read and Process file
+                if (!string.IsNullOrEmpty(fileLocation))
+                    await _offersBulkFileProcessor.ProcessUploadedFile(fileLocation);
 
                 return NoContent();
 

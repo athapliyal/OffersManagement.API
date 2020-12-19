@@ -82,5 +82,13 @@ namespace Offers.API.Repository
         {
             ListOfOffer.RemoveAll(x => x.Id == id);
         }
+
+        public static void BulkUploadMockedOffers(List<Offer> offers)
+        {
+            foreach (var offer in offers)
+            {
+                ListOfOffer.Add(offer);
+            }
+        }
     }
 }

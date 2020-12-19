@@ -37,5 +37,13 @@ namespace Offers.API.Repository
 
             return offer == null ? false : true;
         }
+
+        public async Task BulkUploadOffers(List<Offer> offers)
+        {
+            // Mock a 2 second delay to show asynchronous behavior
+            await Task.Delay(2000);
+
+            MockOffers.BulkUploadMockedOffers(offers);
+        }
     }
 }
