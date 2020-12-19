@@ -1,15 +1,32 @@
 import FullCalendar, { EventClickArg } from "@fullcalendar/react";
+import { useEffect, useState } from "react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-// TODO: These events are offers that will eventually come as global state because the same offer information is used in different components
-import { INITIAL_EVENTS } from "./event-utils";
+import { Preloader } from '../Preloader';
+
+import { CalendarOffer } from "../../models/CalendarOfferModel";
+import { MapOffersToModel } from "./event-utils";
+import { getOffers } from "../../services/offers-service";
 
 import "./calendar.scss";
 
 const OfferCalendar: React.FC = () => {
-  return (
+  const [offers, setOffers] = useState<CalendarOffer[]>([]);
+  const [loadingOffers, setLoadingOffers] = useState<boolean>(true);
+
+  useEffect(() => {
+    getOffers().then((offers) => {
+      setOffers(MapOffersToModel(offers));
+      setLoadingOffers(false);
+    })
+    .catch((err) => {
+      throw new Error(err);
+    })
+  }, []);
+
+  return loadingOffers ? <Preloader /> : (
     <div className="offer-calendar__wrapper">
       <div className="offer-calendar__body">
         <FullCalendar
@@ -20,7 +37,7 @@ const OfferCalendar: React.FC = () => {
             right: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
           initialView="dayGridMonth"
-          initialEvents={INITIAL_EVENTS}
+          initialEvents={offers}
           eventClick={handleEventClick}
         />
       </div>
