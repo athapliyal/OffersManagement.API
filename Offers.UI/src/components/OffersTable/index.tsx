@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo, useCallback, useRef } from "react";
-import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 
 import { Preloader } from "../Preloader";
 import { Pagination } from "../Pagination";
+import { OfferTableRow } from "./OfferTableRow";
 
-import { Offer, OfferCategory, OfferStatus } from "../../models/OfferModel";
+import { Offer } from "../../models/OfferModel";
 import { OFFER_TABLE_HEADERS } from "./offers-table-constants";
 
 import { getOffers } from "../../services/offers-service";
@@ -35,14 +35,12 @@ const OffersTable: React.FC = () => {
 
   const headers = useMemo(() => OFFER_TABLE_HEADERS, []);
 
-  const onCopy = useCallback((props) => {
-    props.preventDefault();
-    console.log(`Copying ${props.target.value}`);
+  const onCopy = useCallback(event => {
+    console.log(event);
   }, []);
 
-  const onDelete = useCallback((props) => {
-    props.preventDefault();
-    console.log(`Deleting ${props.target.value}`);
+  const onDelete = useCallback(event => {
+    console.log(event);
   }, []);
 
   if (offersList?.length !== 0) {
@@ -58,25 +56,8 @@ const OffersTable: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {offersList.map((offer, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{offer.title}</td>
-                    <td>{OfferCategory[offer.category]}</td>
-                    <td>{offer.description}</td>
-                    <td>{offer.startDate}</td>
-                    <td>{offer.endDate}</td>
-                    <td>{OfferStatus[offer.status]}</td>
-                    <td>
-                      <Button variant="primary" value={offer.id} onClick={onCopy}>
-                        Copy
-                      </Button>
-                      <Button variant="danger" value={offer.id} onClick={onDelete}>
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                );
+              {offersList.map((offer) => {
+                return <OfferTableRow offer={offer} onCopy={onCopy} onDelete={onDelete} />;
               })}
             </tbody>
           </Table>
