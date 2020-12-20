@@ -2,14 +2,15 @@ import React, { useEffect, useState, useMemo, useCallback, useRef } from "react"
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 
-import { Preloader } from '../Preloader';
+import { Preloader } from "../Preloader";
+import { Pagination } from "../Pagination";
 
 import { Offer, OfferCategory, OfferStatus } from "../../models/OfferModel";
 import { OFFER_TABLE_HEADERS } from "./offers-table-constants";
 
 import { getOffers } from "../../services/offers-service";
 
-import './offers-table.scss';
+import "./offers-table.scss";
 
 const OffersTable: React.FC = () => {
   const [offersList, setOffersList] = useState<Offer[]>([]);
@@ -46,39 +47,44 @@ const OffersTable: React.FC = () => {
 
   if (offersList?.length !== 0) {
     return (
-      <div className="offers-table-wrapper">
-        <Table responsive hover bordered >
-          <thead>
-            <tr>
-              {headers.map((header, index) => {
-                return <th key={index}>{header}</th>;
+      <>
+        <div className="offers-table-wrapper">
+          <Table responsive hover bordered>
+            <thead>
+              <tr>
+                {headers.map((header, index) => {
+                  return <th key={index}>{header}</th>;
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {offersList.map((offer, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{offer.title}</td>
+                    <td>{OfferCategory[offer.category]}</td>
+                    <td>{offer.description}</td>
+                    <td>{offer.startDate}</td>
+                    <td>{offer.endDate}</td>
+                    <td>{OfferStatus[offer.status]}</td>
+                    <td>
+                      <Button variant="primary" value={offer.id} onClick={onCopy}>
+                        Copy
+                      </Button>
+                      <Button variant="danger" value={offer.id} onClick={onDelete}>
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                );
               })}
-            </tr>
-          </thead>
-          <tbody>
-            {offersList.map((offer, index) => {
-              return (
-                <tr key={index}>
-                  <td>{offer.title}</td>
-                  <td>{OfferCategory[offer.category]}</td>
-                  <td>{offer.description}</td>
-                  <td>{offer.startDate}</td>
-                  <td>{offer.endDate}</td>
-                  <td>{OfferStatus[offer.status]}</td>
-                  <td>
-                    <Button variant="primary" value={offer.id} onClick={onCopy}>
-                      Copy
-                  </Button>
-                    <Button variant="danger" value={offer.id} onClick={onDelete}>
-                      Delete
-                  </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-      </div>
+            </tbody>
+          </Table>
+        </div>
+        <div className="pagination-wrapper">
+          <Pagination />
+        </div>
+      </>
     );
   }
 

@@ -1,6 +1,7 @@
-/* make the customizations */
+@import './colors.scss';
+
 $theme-colors: (
-        "primary": #fa4616,
+        "primary": $primary-color,
         "secondary": white
 );
 
