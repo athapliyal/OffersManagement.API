@@ -4,5 +4,9 @@ $theme-colors: (
         "secondary": white
 );
 
+.Toastify__toast--success {
+        background-color: #fa4616 !important;
+}
+
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";

@@ -9,6 +9,8 @@ import { OFFER_TABLE_HEADERS } from "./offers-table-constants";
 
 import { getOffers } from "../../services/offers-service";
 
+import './offers-table.scss';
+
 const OffersTable: React.FC = () => {
   const [offersList, setOffersList] = useState<Offer[]>([]);
   const mountedRef = useRef(true);
@@ -44,38 +46,39 @@ const OffersTable: React.FC = () => {
 
   if (offersList?.length !== 0) {
     return (
-      <Table responsive striped bordered hover>
-        <thead>
-          <tr>
-            {headers.map((header, index) => {
-              return <th key={index}>{header}</th>;
+      <div className="offers-table-wrapper">
+        <Table responsive hover bordered >
+          <thead>
+            <tr>
+              {headers.map((header, index) => {
+                return <th key={index}>{header}</th>;
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {offersList.map((offer, index) => {
+              return (
+                <tr key={index}>
+                  <td>{offer.title}</td>
+                  <td>{OfferCategory[offer.category]}</td>
+                  <td>{offer.description}</td>
+                  <td>{offer.startDate}</td>
+                  <td>{offer.endDate}</td>
+                  <td>{OfferStatus[offer.status]}</td>
+                  <td>
+                    <Button variant="primary" value={offer.id} onClick={onCopy}>
+                      Copy
+                  </Button>
+                    <Button variant="danger" value={offer.id} onClick={onDelete}>
+                      Delete
+                  </Button>
+                  </td>
+                </tr>
+              );
             })}
-          </tr>
-        </thead>
-        <tbody>
-          {offersList.map((offer, index) => {
-            return (
-              <tr key={index}>
-                <td>{offer.id}</td>
-                <td>{offer.title}</td>
-                <td>{OfferCategory[offer.category]}</td>
-                <td>{offer.description}</td>
-                <td>{offer.startDate}</td>
-                <td>{offer.endDate}</td>
-                <td>{OfferStatus[offer.status]}</td>
-                <td>
-                  <Button variant="outline-primary" value={offer.id} onClick={onCopy}>
-                    Copy
-                  </Button>
-                  <Button variant="outline-danger" value={offer.id} onClick={onDelete}>
-                    Delete
-                  </Button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+          </tbody>
+        </Table>
+      </div>
     );
   }
 
