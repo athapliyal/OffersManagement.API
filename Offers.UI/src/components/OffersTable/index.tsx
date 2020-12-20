@@ -16,22 +16,18 @@ const OffersTable: React.FC = () => {
   const [offersList, setOffersList] = useState<Offer[]>([]);
   const mountedRef = useRef(true);
 
-  const getOfferList = useCallback(() => {
-    return getOffers().then((offers) => {
+  useEffect(() => {
+    getOffers().then((offers) => {
       // if component is not mounted, cancel
       if (!mountedRef.current) return null;
       setOffersList(offers);
     });
-  }, []);
-
-  useEffect(() => {
-    getOfferList();
 
     //component unmount
     return () => {
       mountedRef.current = false;
     };
-  }, [getOfferList]);
+  }, []);
 
   const headers = useMemo(() => OFFER_TABLE_HEADERS, []);
 
