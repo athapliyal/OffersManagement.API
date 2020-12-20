@@ -1,7 +1,6 @@
-import { EventInput } from '@fullcalendar/react'
-import { Offer } from '../../models/OfferModel'
+import { Offer } from '../../models'
 
-export const MapOffersToModel: EventInput[] = (offers: Offer[]) => {
+export const MapOffersToModel = (offers: Offer[]) => {
   return offers.map(offer => ({
     id:offer.id,
     title: offer.title,

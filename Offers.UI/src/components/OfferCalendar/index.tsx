@@ -1,4 +1,4 @@
-import FullCalendar, { EventClickArg } from "@fullcalendar/react";
+import FullCalendar, { EventClickArg, EventInput } from "@fullcalendar/react";
 import { useEffect, useState } from "react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -6,14 +6,13 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 import { Preloader } from '../Preloader';
 
-import { CalendarOffer } from "../../models/CalendarOfferModel";
 import { MapOffersToModel } from "./event-utils";
 import { getOffers } from "../../services/offers-service";
 
 import "./calendar.scss";
 
 const OfferCalendar: React.FC = () => {
-  const [offers, setOffers] = useState<CalendarOffer[]>([]);
+  const [offers, setOffers] = useState<EventInput[]>([]);
   const [loadingOffers, setLoadingOffers] = useState<boolean>(true);
 
   useEffect(() => {
