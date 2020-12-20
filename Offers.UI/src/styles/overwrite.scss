@@ -9,5 +9,10 @@ $theme-colors: (
         background-color: $primary-color !important;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+        color: white !important;
+        margin: 0 0.5em !important;
+}
+
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";

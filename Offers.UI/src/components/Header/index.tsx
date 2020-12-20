@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Link to="/">
-                <img className="header-logo" src={logo} alt="logo" />
+                <img  className="header-logo" src={logo} alt="logo" />
               </Link>
               {navigationItems.map((item) => (
                 <Link className={item.className} to={item.url}>
