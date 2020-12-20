@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 
 import { Preloader } from "../Preloader";
 import { Pagination } from "../Pagination";
+import { OfferTableHeader } from './OfferTableHeader';
 import { OfferTableRow } from "./OfferTableRow";
 
 import { Offer } from "../../models/OfferModel";
@@ -43,6 +44,7 @@ const OffersTable: React.FC = () => {
     return (
       <>
         <div className="offers-table-wrapper">
+          <OfferTableHeader />
           <Table responsive hover bordered>
             <thead>
               <tr>
