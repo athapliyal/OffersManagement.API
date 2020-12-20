@@ -6,7 +6,7 @@ $theme-colors: (
 );
 
 .Toastify__toast--success {
-        background-color: #fa4616 !important;
+        background-color: $primary-color !important;
 }
 
 /* import bootstrap to set changes */

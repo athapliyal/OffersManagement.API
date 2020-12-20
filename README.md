@@ -7,6 +7,7 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 - Complex graphs and Date picker
 - Complex calendar component
 - State management using hooks
+- Pagination
 - Bundle size
 - Deployment
 - Authorization
@@ -18,5 +19,8 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 - Storybook
 - Developer experience
 - I18n and locize
-- BEM styling, SASS, mixins
-
+- BEM styling, SASS, mixins, Scoped SCSS
+- Azure deployment
+- List of component libraries
+- Progressive Web App
+- 404 Page

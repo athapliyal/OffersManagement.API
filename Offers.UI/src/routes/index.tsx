@@ -4,6 +4,7 @@ import OffersTable from "../components/OffersTable";
 import { BulkImportOffer } from "../components/BulkImportOffer";
 import { LoginScreen } from "../components/LoginScreen";
 import { Preloader } from '../components/Preloader';
+import { NotFound } from '../components/NotFound';
 
 const OfferCalendar = lazy(() => import('../components/OfferCalendar'));
 
@@ -49,5 +50,12 @@ export const routes: IRoutes[] = [{
     exact: false,
     component: () => <Suspense fallback={<Preloader />}><OfferCalendar /></Suspense>,
     isPrivateRoute: true,
+  },
+  {
+    path: "",
+    name: "NotFound",
+    exact: false,
+    component: () => <NotFound />,
+    isPrivateRoute: false,
   },
 ];
