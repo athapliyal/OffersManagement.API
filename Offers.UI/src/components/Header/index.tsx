@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext, SET_IS_AUTHENTICATED_FAIL } from '../../store/authentication';
 import { navigationItems } from "./navigation-config";
 
+import logo from '../../images/logo_campaigns.png';
 import './header.scss';
 
 export const Header: React.FC = () => {
@@ -22,6 +23,9 @@ export const Header: React.FC = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
+              <Link to="/">
+                <img className="header-logo" src={logo} alt="logo" />
+              </Link>
               {navigationItems.map((item) => (
                 <Link className={item.className} to={item.url}>
                   <i className={item.icon}></i> {item.title}

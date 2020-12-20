@@ -7,12 +7,6 @@ interface NavigationItem {
 
 export const navigationItems: NavigationItem[] = [
     {
-        title: "Plexure Campaigns",
-        url: "/",
-        icon: "",
-        className: "navbar-brand"
-    },
-    {
         title: "Offers",
         url: "/offers",
         icon: "fas fa-tags",
