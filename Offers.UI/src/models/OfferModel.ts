@@ -1,13 +1,10 @@
 export interface Offer {
     id: string,
     title: string,
-    category: OfferCategory,
     description: string,
-    remainingCodes: number[],
     startDate: Date,
     endDate: Date,
-    lastUpdated: Date,
-    baseWeight: number,
+    category: OfferCategory,
     status: OfferStatus
 }
 

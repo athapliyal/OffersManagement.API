@@ -35,7 +35,7 @@ const OffersTable: React.FC = () => {
     return () => {
       mountedRef.current = false;
     };
-  }, []);
+  }, [retrieveOffers]);
 
   const onCopy = (offerId: string) => {
     setShowModal(true);

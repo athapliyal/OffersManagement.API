@@ -9,7 +9,7 @@ import { AuthContext, SET_IS_AUTHENTICATED_SUCCESS } from "../../store/authentic
 
 import { loginService } from "../../services/login-service";
 
-type FormData = {
+type LoginFormData = {
   username: string;
   password: string;
 };
@@ -18,7 +18,7 @@ export const LoginForm: React.FC = () => {
   const history = useHistory();
   const authContext = useContext(AuthContext);
 
-  const { register, setValue, handleSubmit, errors } = useForm<FormData>();
+  const { register, setValue, handleSubmit, errors } = useForm<LoginFormData>();
 
   const onSubmit = handleSubmit(({ username, password }) => {
     loginService(username, password)

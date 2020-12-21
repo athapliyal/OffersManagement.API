@@ -1,20 +1,9 @@
-.offer-table-header {
-    margin-bottom: 2em;
-    background-color: #f8f8f8;
-    padding: 1.25em 0 1em 0;
-    border-bottom: 1px solid #e1e1e1;
+@import '../../styles/mixins.scss';
 
+.offer-table-header {
+    @include header-styles;
     .offer-table-header-content {
-        display: flex;
-        width: 80%;
-        margin: 0 auto; 
-        h1 {
-            margin-right: 0.75em;
-            font-weight: bold;
-            font-size: 1.5em;
-            align-self: center;
-        }
-    
+        @include header-content-styles;
         button.create-offer, button.import-offer {
             align-self: flex-start;
         }
@@ -43,4 +32,30 @@
     justify-content: flex-end;
     margin: 0 auto;
     margin-top: 2em;
+}
+
+.new-offer-wrapper {
+    .new-offer-header {
+        @include header-styles;
+
+        .new-offer-header-content {
+            @include header-content-styles;
+        }
+    }
+
+    .new-offer-form {
+        @include card-styles;
+        width: 60%;
+        margin: 0 auto;
+        margin-top: 2em;
+        padding: 2em;
+    
+        .date-inputs {
+            display: flex;
+            
+            .start-date {
+                margin-right: 1em;
+            }
+        }
+    }
 }
