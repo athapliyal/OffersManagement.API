@@ -1,15 +1,11 @@
-import React, { useEffect, useState, useMemo, useRef } from "react";
-import Table from "react-bootstrap/Table";
+import React, { useEffect, useState, useRef } from "react";
 
 import { Preloader } from "../Preloader";
 import { Pagination } from "../Pagination";
-import { OfferTableHeader } from './OfferTableHeader';
-import { OfferTableRow } from "./OfferTableRow";
 import { IGenericModalProps, GenericModal } from '../GenericModal';
 
 import { Offer } from "../../models/OfferModel";
-import { OFFER_TABLE_HEADERS } from "./offers-table-constants";
-import { OnCopyModalBody, OnDeleteModalBody } from './offers-table-config';
+import { OffersTableBody, OnCopyModalBody, OnDeleteModalBody } from './OffersTableBody';
 
 import { getOffers } from "../../services/offers-service";
 
@@ -34,7 +30,7 @@ const OffersTable: React.FC = () => {
     };
   }, []);
 
-  const onCopy = () => {
+  const onCopy = (offerId: string) => {
     setShowModal(true);
 
     setModalProps({
@@ -43,11 +39,11 @@ const OffersTable: React.FC = () => {
       cancelText: "Cancel",
       submitText: "Copy offer",
       closeCallback: () => setShowModal(false),
-      submitCallback: onCopySelected
+      submitCallback: () => onCopySelected(offerId)
     })
   }
 
-  const onDelete = (setModalProps: any) => {
+  const onDelete = (offerId: string) => {
     setShowModal(true);
 
     setModalProps({
@@ -56,40 +52,26 @@ const OffersTable: React.FC = () => {
       cancelText: "Cancel",
       submitText: "Delete offer",
       closeCallback: () => setShowModal(false),
-      submitCallback: onDeleteSelected
+      submitCallback: () => onDeleteSelected(offerId)
     })
   };
 
-  const onCopySelected = () => alert('copied');
-  const onDeleteSelected = () => alert('delete');
+  const onCopySelected = (offerId: string) => {
+    setShowModal(false);
+    alert(`${offerId} copied`);
+  }
 
-  const headers = useMemo(() => OFFER_TABLE_HEADERS, []);
+  const onDeleteSelected = (offerId: string) => {
+    setShowModal(false);
+    alert(`${offerId} delete`);
+  }
 
   if (offersList?.length !== 0) {
     return (
       <>
         { showModal && <GenericModal {...modalProps} />}
         <div className="offers-table-wrapper">
-          <OfferTableHeader />
-          <Table responsive hover bordered>
-            <thead>
-              <tr>
-                {headers.map((header, index) => {
-                  return <th key={index}>{header}</th>;
-                })}
-              </tr>
-            </thead>
-            <tbody>
-              {offersList.map((offer) => {
-                return <OfferTableRow
-                  key={offer.id}
-                  offer={offer}
-                  onCopy={() => onCopy()}
-                  onDelete={() => onDelete(setModalProps)}
-                />;
-              })}
-            </tbody>
-          </Table>
+          <OffersTableBody offersList={offersList} onCopy={onCopy} onDelete={onDelete} />
         </div>
         <div className="pagination-wrapper">
           <Pagination />
