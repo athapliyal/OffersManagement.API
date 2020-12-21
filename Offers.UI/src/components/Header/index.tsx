@@ -27,7 +27,7 @@ export const Header: React.FC = () => {
                 <img  className="header-logo" src={logo} alt="logo" />
               </Link>
               {navigationItems.map((item) => (
-                <Link className={item.className} to={item.url}>
+                <Link key={item.title} className={item.className} to={item.url}>
                   <i className={item.icon}></i> {item.title}
                 </Link>
               ))}
