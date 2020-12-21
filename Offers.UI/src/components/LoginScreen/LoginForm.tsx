@@ -20,7 +20,7 @@ export const LoginForm: React.FC = () => {
 
   const { register, setValue, handleSubmit, errors } = useForm<LoginFormData>();
 
-  const onSubmit = handleSubmit(({ username, password }) => {
+  const onSubmit = handleSubmit(({ username, password }) => {    
     loginService(username, password)
       .then(() => {
         authContext.dispatch({ type: SET_IS_AUTHENTICATED_SUCCESS, value: { isAuthenticated: true } });

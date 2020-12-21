@@ -71,3 +71,27 @@ export const onCopyToastFailure = () => {
         progress: undefined,
     });
 }
+
+export const onNewOfferToastUpload = () => {
+    toast.success('Uploading new offer...', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+}
+
+export const onNewOfferToastSuccess = () => {
+    toast.success('Offer uploaded succesfully!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+}
