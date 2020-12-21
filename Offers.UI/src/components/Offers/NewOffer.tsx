@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 
@@ -118,6 +119,14 @@ export const NewOffer: React.FC = () => {
             </select>
           </div>
         </form>
+        <div className="new-offer-buttons">
+          <Button variant="outline-danger" className="reset-offer-button">
+            Reset offer
+          </Button>
+          <Button variant="primary" type="submit" className="add-offer-button">
+            Add offer
+          </Button>
+        </div>
       </div>
     </div>
   );
