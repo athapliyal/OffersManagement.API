@@ -2,12 +2,13 @@ import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useTranslation } from 'react-i18next';
 
+import { Preloader } from "../Preloader";
+
 import { ToastContainer } from 'react-toastify';
 import { bulkUploadToastSuccess, bulkUploadToastFailure } from '../../notifications/toast-config';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { bulkImportService } from '../../services/bulk-import-service';
-import { Preloader } from "../Preloader";
 
 export const BulkImportDropzone: React.FC = () => {
   const [uploading, setUploading] = useState<boolean>(false);

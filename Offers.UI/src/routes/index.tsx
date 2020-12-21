@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 
-import OffersTable from "../components/OffersTable";
+import OffersTable from "../components/Offers";
 import { BulkImportOffer } from "../components/BulkImportOffer";
 import { LoginScreen } from "../components/LoginScreen";
 import { Preloader } from '../components/Preloader';

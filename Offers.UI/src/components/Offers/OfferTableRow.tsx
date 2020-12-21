@@ -23,7 +23,7 @@ export const OfferTableRow: React.FC<IOfferTableRowProps> = (props: IOfferTableR
           <Button variant="primary" value={offer.id} onClick={onCopy}>
             Copy
           </Button>
-          <Button variant="danger" value={offer.id} onClick={onDelete}>
+          <Button variant="outline-danger" value={offer.id} onClick={onDelete}>
             Delete
           </Button>
         </td>

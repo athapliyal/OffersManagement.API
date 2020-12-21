@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
-import { Alert, Button } from "react-bootstrap";
-import { FieldErrors, useForm } from "react-hook-form";
-import { useHistory } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Button } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
-import { AuthContext, SET_IS_AUTHENTICATED_SUCCESS } from '../../store/authentication';
+import { LoginFormErrors } from "./LoginFormErrors";
 
-import { loginService } from '../../services/login-service';
+import { AuthContext, SET_IS_AUTHENTICATED_SUCCESS } from "../../store/authentication";
+
+import { loginService } from "../../services/login-service";
 
 type FormData = {
   username: string;
@@ -24,16 +26,16 @@ export const LoginForm: React.FC = () => {
         authContext.dispatch({ type: SET_IS_AUTHENTICATED_SUCCESS, value: { isAuthenticated: true } });
 
         // go to home page if authenticated
-        history.push('/')
+        history.push("/");
       })
       // can show toaster here with an error message
-      .catch(() => { console.log("some error"); })
+      .catch(() => {
+        console.log("some error");
+      });
   });
 
   return (
     <>
-      <LoginFormErrors errors={errors} />
-
       <form className="login-form" onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
@@ -41,7 +43,7 @@ export const LoginForm: React.FC = () => {
             className="form-control"
             name="username"
             id="username"
-            onChange={e => setValue("username", e.target.value)}
+            onChange={(e) => setValue("username", e.target.value)}
             ref={register({
               required: "Please enter username",
             })}
@@ -53,7 +55,7 @@ export const LoginForm: React.FC = () => {
             className="form-control"
             name="password"
             id="password"
-            onChange={e => setValue("password", e.target.value)}
+            onChange={(e) => setValue("password", e.target.value)}
             ref={register({
               required: "Please enter password",
             })}
@@ -67,23 +69,7 @@ export const LoginForm: React.FC = () => {
           Log in
         </Button>
       </form>
-    </>
-  );
-};
-
-const LoginFormErrors: React.FC<FieldErrors> = ({ errors }) => {
-  return (
-    <>
-      {errors?.username && (
-        <Alert variant="danger">
-          <i className="fas fa-exclamation-circle"></i> Please enter username
-        </Alert>
-      )}
-      {errors?.password && (
-        <Alert variant="danger">
-          <i className="fas fa-exclamation-circle"></i> Please enter password
-        </Alert>
-      )}
+      <LoginFormErrors errors={errors} />
     </>
   );
 };
