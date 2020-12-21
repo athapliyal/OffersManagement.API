@@ -23,3 +23,27 @@ export const bulkUploadToastFailure = () => {
         progress: undefined,
     });
 }
+
+export const onDeleteToastSuccess = () => {
+    toast.success('Offer deleted succesfully!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+}
+
+export const onDeleteToastFailure = () => {
+    toast.error('Could not delete the offer', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+}

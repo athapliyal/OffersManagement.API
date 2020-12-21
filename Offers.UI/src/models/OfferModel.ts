@@ -11,5 +11,5 @@ export interface Offer {
     status: OfferStatus
 }
 
-export enum OfferCategory { Clothing = 1, Food = 2, Sport = 3 };
-export enum OfferStatus { Published = 1, Draft = 2, Pending = 3 };
+export enum OfferCategory { Clothing = 0, Food = 1, Sports = 2 };
+export enum OfferStatus { Published = 0, Draft = 1, Pending = 2 };

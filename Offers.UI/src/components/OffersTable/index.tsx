@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
+
+import { ToastContainer } from 'react-toastify';
 
 import { Preloader } from "../Preloader";
 import { Pagination } from "../Pagination";
@@ -7,7 +9,8 @@ import { IGenericModalProps, GenericModal } from '../GenericModal';
 import { Offer } from "../../models/OfferModel";
 import { OffersTableBody, OnCopyModalBody, OnDeleteModalBody } from './OffersTableBody';
 
-import { getOffers } from "../../services/offers-service";
+import { getOffers, deleteOffer } from "../../services/offers-service";
+import { onDeleteToastSuccess, onDeleteToastFailure } from '../../notifications/toast-config';
 
 import "./offers-table.scss";
 
@@ -17,12 +20,16 @@ const OffersTable: React.FC = () => {
   const [modalProps, setModalProps] = useState<IGenericModalProps>({} as IGenericModalProps);
   const mountedRef = useRef(true);
 
-  useEffect(() => {
+  const retrieveOffers = useCallback(() => {
     getOffers().then((offers) => {
       // if component is not mounted, cancel
       if (!mountedRef.current) return null;
       setOffersList(offers);
     });
+  }, []);
+
+  useEffect(() => {
+    retrieveOffers();
 
     //component unmount
     return () => {
@@ -62,13 +69,22 @@ const OffersTable: React.FC = () => {
   }
 
   const onDeleteSelected = (offerId: string) => {
+    const res = deleteOffer(offerId);
     setShowModal(false);
-    alert(`${offerId} delete`);
+
+    res.then(() => {
+      retrieveOffers();
+      onDeleteToastSuccess();
+    })
+      .catch(err => {
+        onDeleteToastFailure();
+      });
   }
 
   if (offersList?.length !== 0) {
     return (
       <>
+        <ToastContainer />
         { showModal && <GenericModal {...modalProps} />}
         <div className="offers-table-wrapper">
           <OffersTableBody offersList={offersList} onCopy={onCopy} onDelete={onDelete} />
