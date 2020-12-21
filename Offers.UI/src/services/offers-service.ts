@@ -14,3 +14,9 @@ export const deleteOffer = async (id: string) => {
     const res = await axios.delete(`${OFFERS_API_BASE_URL}/offers?id=${id}`);
     return res;
 }
+
+export const copyOffer = async (id: string) => {
+    const res = await axios.get(`${OFFERS_API_BASE_URL}/offers/copyOffer?id=${id}`);
+    return res;
+}
+ 

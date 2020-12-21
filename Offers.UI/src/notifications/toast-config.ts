@@ -47,3 +47,27 @@ export const onDeleteToastFailure = () => {
         progress: undefined,
     });
 }
+
+export const onCopyToastSuccess = () => {
+    toast.success('Offer copied succesfully!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+}
+
+export const onCopyToastFailure = () => {
+    toast.error('Could not copy the offer', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+}

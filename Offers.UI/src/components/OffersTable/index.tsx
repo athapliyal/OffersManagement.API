@@ -9,8 +9,8 @@ import { IGenericModalProps, GenericModal } from '../GenericModal';
 import { Offer } from "../../models/OfferModel";
 import { OffersTableBody, OnCopyModalBody, OnDeleteModalBody } from './OffersTableBody';
 
-import { getOffers, deleteOffer } from "../../services/offers-service";
-import { onDeleteToastSuccess, onDeleteToastFailure } from '../../notifications/toast-config';
+import { getOffers, deleteOffer, copyOffer } from "../../services/offers-service";
+import { onDeleteToastSuccess, onDeleteToastFailure, onCopyToastSuccess, onCopyToastFailure } from '../../notifications/toast-config';
 
 import "./offers-table.scss";
 
@@ -64,8 +64,16 @@ const OffersTable: React.FC = () => {
   };
 
   const onCopySelected = (offerId: string) => {
+    const res = copyOffer(offerId);
     setShowModal(false);
-    alert(`${offerId} copied`);
+
+    res.then(() => {
+      retrieveOffers();
+      onCopyToastSuccess();
+    })
+      .catch(err => {
+        onCopyToastFailure();
+      });
   }
 
   const onDeleteSelected = (offerId: string) => {

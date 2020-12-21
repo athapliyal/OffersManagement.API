@@ -90,5 +90,10 @@ namespace Offers.API.Repository
                 ListOfOffer.Add(offer);
             }
         }
+
+        public static void UploadMockedOffer(Offer offer)
+        {
+            ListOfOffer.Add(offer);
+        }
     }
 }

@@ -45,5 +45,13 @@ namespace Offers.API.Repository
 
             MockOffers.BulkUploadMockedOffers(offers);
         }
+
+        public async Task UploadOffer(Offer offer)
+        {
+            // Mock a 1 second delay to show asynchronous behavior
+            await Task.Delay(1000);
+
+            MockOffers.UploadMockedOffer(offer);
+        }
     }
 }
