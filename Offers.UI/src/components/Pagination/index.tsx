@@ -7,11 +7,18 @@ interface PageChangeData {
   selected: number;
 }
 
-export const Pagination = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+interface IPaginationProps {
+  totalCount: number;
+  currentPage: number;
+  setCurrentPage: (currentPage: number) => void;
+}
+
+export const MAX_PAGE_SIZE = 5;
+
+export const Pagination: React.FC<IPaginationProps> = ({ totalCount, currentPage, setCurrentPage }) => {
 
   const onPageChange = (data: PageChangeData) => {
-    setCurrentPage(data.selected);
+    setCurrentPage(data.selected + 1);
   };
 
   return (
@@ -19,7 +26,8 @@ export const Pagination = () => {
       <ReactPaginate
         previousLabel={"<"}
         nextLabel={">"}
-        pageCount={5}
+        forcePage ={currentPage - 1}
+        pageCount={totalCount / MAX_PAGE_SIZE}
         onPageChange={onPageChange}
         containerClassName={"pagination"}
         previousLinkClassName={"pagination__link"}

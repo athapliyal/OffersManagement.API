@@ -68,9 +68,17 @@ namespace Offers.API.Repository
             });
         }
 
-        public static List<Offer> RetrieveMockedOffers()
+        public static OfferSearch RetrieveMockedOffers(OffersResourceParameters offersResourceParameters)
         {
-            return ListOfOffer;
+            var offerSearch = new OfferSearch();
+
+            offerSearch.Offers = ListOfOffer
+                    .Skip(offersResourceParameters.PageSize * (offersResourceParameters.PageNumber - 1))
+                    .Take(offersResourceParameters.PageSize)
+                    .ToList();
+
+            offerSearch.OffersCount = ListOfOffer.Count();
+            return offerSearch;
         }
 
         public static Offer RetrieveMockedOffer(int id)

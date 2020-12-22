@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { Offer } from '../models/OfferModel';
+import { OfferSearchResults } from '../models/OfferSearchResultsModel';
 import { NewOfferModel } from '../models/NewOfferModel';
 
 import { OFFERS_API_BASE_URL } from './service-constants';
 
-export const getOffers = async () => {
-    const response = await fetch(OFFERS_API_BASE_URL);
-    const data: Offer[] = await response.json();
+export const getOffers = async (pageNumber: number, pageSize: number) => {
+    const response = await fetch(`${OFFERS_API_BASE_URL}?PageNumber=${pageNumber}&PageSize=${pageSize}`);
+    const data: OfferSearchResults = await response.json();
 
     return data;
 }

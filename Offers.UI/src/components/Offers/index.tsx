@@ -3,10 +3,10 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { ToastContainer } from 'react-toastify';
 
 import { Preloader } from "../Preloader";
-import { Pagination } from "../Pagination";
+import { MAX_PAGE_SIZE, Pagination } from "../Pagination";
 import { IGenericModalProps, GenericModal } from '../GenericModal';
 
-import { Offer } from "../../models/OfferModel";
+import { OfferSearchResults } from "../../models/OfferSearchResultsModel";
 import { OffersTableBody, OnCopyModalBody, OnDeleteModalBody } from './OffersTableBody';
 
 import { getOffers, deleteOffer, copyOffer } from "../../services/offers-service";
@@ -15,18 +15,24 @@ import { onDeleteToastSuccess, onDeleteToastFailure, onCopyToastSuccess, onCopyT
 import "./offers.scss";
 
 const OffersTable: React.FC = () => {
-  const [offersList, setOffersList] = useState<Offer[]>([]);
+  const [fetchingData, setFetchingData] = useState<boolean>(false);
+  const [offerSearch, setOfferSearch] = useState<OfferSearchResults>();
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalProps, setModalProps] = useState<IGenericModalProps>({} as IGenericModalProps);
   const mountedRef = useRef(true);
 
   const retrieveOffers = useCallback(() => {
-    getOffers().then((offers) => {
+    setFetchingData(true);
+
+    getOffers(currentPage, MAX_PAGE_SIZE).then((offerSearch) => {
+      setFetchingData(false);
+      setOfferSearch(offerSearch);
+      
       // if component is not mounted, cancel
       if (!mountedRef.current) return null;
-      setOffersList(offers);
     });
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     retrieveOffers();
@@ -89,16 +95,16 @@ const OffersTable: React.FC = () => {
       });
   }
 
-  if (offersList?.length !== 0) {
+  if (!fetchingData) {
     return (
       <>
         <ToastContainer />
         { showModal && <GenericModal {...modalProps} />}
         <div className="offers-table-wrapper">
-          <OffersTableBody offersList={offersList} onCopy={onCopy} onDelete={onDelete} />
+          <OffersTableBody offersList={offerSearch?.offers} onCopy={onCopy} onDelete={onDelete} />
         </div>
         <div className="pagination-wrapper">
-          <Pagination />
+          <Pagination totalCount={offerSearch?.offersCount || 0} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>
       </>
     );

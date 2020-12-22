@@ -1,6 +1,5 @@
 ﻿using Offers.API.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Offers.API.Repository
@@ -15,12 +14,12 @@ namespace Offers.API.Repository
             return MockOffers.RetrieveMockedOffer(id);
         }
 
-        public async Task<IList<Offer>> GetOffers()
+        public async Task<OfferSearch> GetOffers(OffersResourceParameters offersResourceParameters)
         {
             // Mock a 2 second delay to show asynchronous behavior
             await Task.Delay(2000);
 
-            return MockOffers.RetrieveMockedOffers();
+            return MockOffers.RetrieveMockedOffers(offersResourceParameters);
         }
 
         public async Task DeleteOffer(int offerId)

@@ -19,8 +19,8 @@ const OfferCalendar: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getOffers().then((offers) => {
-      setOffers(MapOffersToModel(offers));
+    getOffers(1, 100).then((offerSearch) => {
+      setOffers(MapOffersToModel(offerSearch.offers));
       setLoadingOffers(false);
     })
     .catch((err) => {

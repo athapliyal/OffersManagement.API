@@ -2,6 +2,7 @@
 using Offers.API.Dto;
 using Offers.API.Models;
 using Offers.API.Repository;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,11 +20,11 @@ namespace Offers.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllOffers()
+        public async Task<IActionResult> GetAllOffers([FromQuery] OffersResourceParameters offersResourceParameters)
         {
-            var offers = await _offerRepository.GetOffers();
+            var offersSearchResult = await _offerRepository.GetOffers(offersResourceParameters);
 
-            return Ok(offers);
+            return Ok(offersSearchResult);
         }
 
         [HttpGet("{id}")]
@@ -50,11 +51,9 @@ namespace Offers.API.Controllers
                 return BadRequest(errors);
             }
 
-            var offerCount = await GetOffersCount();
-
             var newOffer = new Offer
             {
-                Id = offerCount + 1,
+                Id = GenerateRandomId(),
                 Title = offer.Title,
                 Description = offer.Description,
                 StartDate = offer.StartDate,
@@ -89,11 +88,10 @@ namespace Offers.API.Controllers
                 return NotFound();
             
             var offer = await _offerRepository.GetOffer(id);
-            var offerCount = await GetOffersCount();
 
             var copiedOffer = new Offer
             {
-                Id = offerCount + 1,
+                Id = GenerateRandomId(),
                 Title = $"Copy of {offer.Title}",
                 Description = $"Copy of {offer.Description}",
                 StartDate = offer.StartDate,
@@ -107,12 +105,10 @@ namespace Offers.API.Controllers
             return Ok();
         }
 
-        private async Task<int> GetOffersCount()
+        private int GenerateRandomId()
         {
-            // PLEASE IGNORE THIS QUICK CODE FOR POC
-            var offers = await _offerRepository.GetOffers();
-
-            return offers.Count;
+            var random = new Random();
+            return random.Next(10, int.MaxValue);  
         }
     }
 }

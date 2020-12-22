@@ -9,7 +9,7 @@ import { OFFER_TABLE_HEADERS } from "./offers-table-constants";
 import { Offer } from '../../models';
 
 interface IOffersTableBodyProps {
-    offersList: Offer[];
+    offersList?: Offer[];
     onCopy: (offerId: string) => void;
     onDelete: (offerId: string) => void;
 }
@@ -29,7 +29,7 @@ export const OffersTableBody: React.FC<IOffersTableBodyProps> = ({ offersList, o
                     </tr>
                 </thead>
                 <tbody>
-                    {offersList.map((offer) => {
+                    {offersList?.map((offer) => {
                         return <OfferTableRow
                             key={offer.id}
                             offer={offer}

@@ -1,4 +1,5 @@
-﻿using Offers.API.Models;
+﻿using Offers.API.Dto;
+using Offers.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Offers.API.Repository
         ///     Retrieve all offers
         /// </summary>
         /// <returns></returns>
-        Task<IList<Offer>> GetOffers();
+        Task<OfferSearch> GetOffers(OffersResourceParameters offersResourceParameters);
 
         /// <summary>
         ///     Retrieve a specific offer
