@@ -10,7 +10,7 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 - Bundle size
 - Deployment
 - Authorization
-- Animation libraries
+- Animations with Framer motion
 - Typescript
 - Testing using RTL, Integration tests using Cypress
 - Linting

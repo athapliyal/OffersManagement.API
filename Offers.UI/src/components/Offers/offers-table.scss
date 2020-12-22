@@ -17,7 +17,13 @@
         width: 80%;
         margin: 0 auto;
         color: #495057;   
-        font-size: 0.95em;     
+        font-size: 0.95em;
+        
+        tr {
+            :hover {
+                cursor: pointer;
+            }
+        }
     }
 
     button {
@@ -68,10 +74,20 @@
             }
         }
     }
+
+    .new-offer-errors-wrapper {
+        width: 60%;
+        margin: 0 auto;
+        margin-bottom: 2em;
+    }
 }
 
-.new-offer-errors-wrapper {
-    width: 60%;
-    margin: 0 auto;
-    margin-bottom: 2em;
+.offer-details-wrapper {
+    .offer-details-header {
+        @include header-styles;
+
+        .offer-details-header-content {
+            @include header-content-styles;
+        }
+    }
 }

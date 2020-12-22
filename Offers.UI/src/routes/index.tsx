@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 
 import OffersTable from "../components/Offers";
+import { OfferDetails } from '../components/Offers/OfferDetails';
 import { NewOffer } from '../components/Offers/NewOffer';
 import { BulkImportOffer } from "../components/BulkImportOffer";
 import { LoginScreen } from "../components/LoginScreen";
@@ -36,6 +37,13 @@ export const routes: IRoutes[] = [{
     name: "Offers",
     exact: true,
     component: () => <OffersTable />,
+    isPrivateRoute: true,
+  },
+  {
+    path: "/offers/:id",
+    name: "OfferDetails",
+    exact: true,
+    component: () => <OfferDetails />,
     isPrivateRoute: true,
   },
   {

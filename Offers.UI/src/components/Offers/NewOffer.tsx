@@ -27,7 +27,6 @@ export const NewOffer: React.FC = () => {
   }, [register]);
 
   const onSubmit = handleSubmit((offer) => {
-    console.log(offer);
     setErrors(null);
     onNewOfferToastUpload();
 
@@ -47,7 +46,8 @@ export const NewOffer: React.FC = () => {
 
     // reset custom form elements
     setStartDate(null);
-    setEndDate(null)
+    setEndDate(null);
+    setErrors(null);
   }
 
   return (
