@@ -24,3 +24,7 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 - List of component libraries
 - Progressive Web App
 - 404 Page
+
+
+Key things
+- Authentication persistence using cookies

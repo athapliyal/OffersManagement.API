@@ -15,7 +15,6 @@ import { onDeleteToastSuccess, onDeleteToastFailure, onCopyToastSuccess, onCopyT
 import "./offers.scss";
 
 const OffersTable: React.FC = () => {
-  const [fetchingData, setFetchingData] = useState<boolean>(false);
   const [offerSearch, setOfferSearch] = useState<OfferSearchResults>();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -23,10 +22,7 @@ const OffersTable: React.FC = () => {
   const mountedRef = useRef(true);
 
   const retrieveOffers = useCallback(() => {
-    setFetchingData(true);
-
     getOffers(currentPage, MAX_PAGE_SIZE).then((offerSearch) => {
-      setFetchingData(false);
       setOfferSearch(offerSearch);
       
       // if component is not mounted, cancel
@@ -74,7 +70,6 @@ const OffersTable: React.FC = () => {
     setShowModal(false);
 
     res.then(() => {
-      retrieveOffers();
       onCopyToastSuccess();
     })
       .catch(err => {
@@ -95,7 +90,7 @@ const OffersTable: React.FC = () => {
       });
   }
 
-  if (!fetchingData) {
+  if (offerSearch?.offersCount) {
     return (
       <>
         <ToastContainer />

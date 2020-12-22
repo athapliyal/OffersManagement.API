@@ -8,16 +8,16 @@ namespace Offers.API.Repository
     {        
         public async Task<Offer> GetOffer(int id)
         {
-            // Mock a 1 second delay to show asynchronous behavior
-            await Task.Delay(1000);
+            // Mock a 0.5 second delay to show asynchronous behavior
+            await Task.Delay(500);
 
             return MockOffers.RetrieveMockedOffer(id);
         }
 
         public async Task<OfferSearch> GetOffers(OffersResourceParameters offersResourceParameters)
         {
-            // Mock a 2 second delay to show asynchronous behavior
-            await Task.Delay(2000);
+            // Mock a 1 second delay to show asynchronous behavior
+            await Task.Delay(1000);
 
             return MockOffers.RetrieveMockedOffers(offersResourceParameters);
         }

@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Link to="/">
-                <img  className="header-logo" src={logo} alt="logo" />
+                <img className="header-logo" src={logo} alt="logo" />
               </Link>
               {navigationItems.map((item) => (
                 <Link key={item.title} className={item.className} to={item.url}>
@@ -33,6 +33,7 @@ export const Header: React.FC = () => {
               ))}
             </Nav>
             <Nav>
+              <Link className="nav-link" to="/no-where"> <i className="fas fa-dizzy"></i></Link>
               <LanguageDropdown />
               <Link className="nav-link" to="/login" onClick={() => logoutUser()}>Logout</Link>
             </Nav>
