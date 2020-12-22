@@ -12,7 +12,7 @@ import { OffersTableBody, OnCopyModalBody, OnDeleteModalBody } from './OffersTab
 import { getOffers, deleteOffer, copyOffer } from "../../services/offers-service";
 import { onDeleteToastSuccess, onDeleteToastFailure, onCopyToastSuccess, onCopyToastFailure } from '../../notifications/toast-config';
 
-import "./offers-table.scss";
+import "./offers.scss";
 
 const OffersTable: React.FC = () => {
   const [offersList, setOffersList] = useState<Offer[]>([]);

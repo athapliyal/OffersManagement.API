@@ -1,4 +1,5 @@
 @import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
 
 .offer-table-header {
     @include header-styles;
@@ -88,6 +89,16 @@
 
         .offer-details-header-content {
             @include header-content-styles;
+        }
+    }
+
+    .offer-details-card {
+        padding: 0;
+        margin: 0.5em;
+
+        .heading {
+            background-color: $primary-color;
+            color: white;
         }
     }
 }

@@ -20,7 +20,7 @@ export const OffersTableBody: React.FC<IOffersTableBodyProps> = ({ offersList, o
     return (
         <>
             <OfferTableHeader />
-            <Table responsive hover bordered>
+            <Table striped responsive hover bordered>
                 <thead>
                     <tr>
                         {headers.map((header, index) => {

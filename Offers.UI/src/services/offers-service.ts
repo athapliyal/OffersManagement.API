@@ -11,6 +11,13 @@ export const getOffers = async () => {
     return data;
 }
 
+export const getOffer = async (offerId: string) => {
+    const response = await fetch(`${OFFERS_API_BASE_URL}/${offerId}`);
+    const data: Offer = await response.json();
+
+    return data;
+}
+
 export const deleteOffer = async (id: string) => {
     const res = await axios.delete(`${OFFERS_API_BASE_URL}?id=${id}`);
     return res;
