@@ -1,5 +1,7 @@
-import FullCalendar, { EventClickArg, EventInput } from "@fullcalendar/react";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+
+import FullCalendar, { EventClickArg, EventInput } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -14,6 +16,7 @@ import "./calendar.scss";
 const OfferCalendar: React.FC = () => {
   const [offers, setOffers] = useState<EventInput[]>([]);
   const [loadingOffers, setLoadingOffers] = useState<boolean>(true);
+  const history = useHistory();
 
   useEffect(() => {
     getOffers().then((offers) => {
@@ -24,6 +27,11 @@ const OfferCalendar: React.FC = () => {
       throw new Error(err);
     })
   }, []);
+
+  const handleEventClick = (clickInfo: EventClickArg) => {
+    const offerId = clickInfo.event._def.publicId;
+    history.push(`/offers/${offerId}`);
+  };
 
   return loadingOffers ? <Preloader /> : (
     <div className="offer-calendar__wrapper">
@@ -37,15 +45,11 @@ const OfferCalendar: React.FC = () => {
           }}
           initialView="dayGridMonth"
           initialEvents={offers}
-          eventClick={handleEventClick}
+          eventClick={handleEventClick}          
         />
       </div>
     </div>
   );
-};
-
-const handleEventClick = (clickInfo: EventClickArg) => {
-  alert(clickInfo.event);
 };
 
 export default OfferCalendar;

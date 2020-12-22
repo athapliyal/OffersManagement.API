@@ -26,19 +26,29 @@ export const NewOffer: React.FC = () => {
     register({ name: "endDate" });
   }, [register]);
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit((offer) => {
+    console.log(offer);
     setErrors(null);
     onNewOfferToastUpload();
 
-    uploadOffer(data)
+    uploadOffer(offer)
       .then((res) => {
         onNewOfferToastSuccess();
-        reset();
+        restForm();
       })
       .catch(err => {        
         err.response && setErrors(err.response.data.errors);
       });
   });
+
+  const restForm = () => {
+    // reset inputs managed by react-form
+    reset();
+
+    // reset custom form elements
+    setStartDate(null);
+    setEndDate(null)
+  }
 
   return (
     <>
@@ -106,7 +116,7 @@ export const NewOffer: React.FC = () => {
               </select>
             </div>
             <div className="new-offer-buttons">
-              <Button variant="outline-danger" className="reset-offer-button" onClick={() => reset()}>Reset offer </Button>
+              <Button variant="outline-danger" className="reset-offer-button" onClick={() => restForm()}>Reset offer </Button>
               <Button variant="primary" type="submit" className="add-offer-button">Add offer</Button>
             </div>
           </form>
