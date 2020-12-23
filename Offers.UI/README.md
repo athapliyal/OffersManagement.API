@@ -20,3 +20,12 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 - I18n and locize
 - BEM styling, SASS, mixins
 
+# Important todos
+- Presentation planning
+- Tests using RTL and MSW
+- Persist auth creds
+- Responsiveness
+
+# Nice to have
+- Better table component
+- Graphs to denote Analytics

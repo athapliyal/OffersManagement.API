@@ -62,6 +62,7 @@
     "@types/react-paginate": "^6.2.1",
     "@types/react-router-dom": "^5.1.6",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "msw": "^0.24.2",
     "source-map-explorer": "^2.5.1"
   }
 }
