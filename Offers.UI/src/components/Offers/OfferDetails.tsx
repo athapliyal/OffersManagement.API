@@ -26,7 +26,7 @@ export const OfferDetails: React.FC = () => {
       .catch((err) => {
         throw new Error(err);
       });
-  }, []);
+  }, [id]);
 
   return Object.keys(offerDetails).length === 0 ? (
     <Preloader />

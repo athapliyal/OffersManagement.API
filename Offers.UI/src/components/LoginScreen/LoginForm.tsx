@@ -62,7 +62,7 @@ export const LoginForm: React.FC = () => {
           />
         </div>
 
-        <a className="forgotten-password-link" href="#">
+        <a className="forgotten-password-link" href="/login">
           Forgotten Password?
         </a>
         <Button variant="primary" type="submit" className="login-button">

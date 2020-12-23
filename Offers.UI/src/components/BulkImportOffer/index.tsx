@@ -1,7 +1,6 @@
 import { BulkImportHeader } from './BulkImportHeader';
 import { BulkImportDropzone } from './BulkImportDropzone';
 import { BulkImportInstructions } from './BulkImportInstructions';
-import { BulkImportFooter } from './BulkImportFooter';
 
 import "./bulk-import-offer.scss";
 
@@ -17,7 +16,6 @@ export const BulkImportOffer: React.FC = () => {
               <BulkImportInstructions />
             </div>
           </section>
-          <BulkImportFooter />
         </div>
       </div>
     </section>
