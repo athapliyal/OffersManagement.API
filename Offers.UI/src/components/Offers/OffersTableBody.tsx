@@ -5,7 +5,7 @@ import Table from "react-bootstrap/Table";
 import { OfferTableHeader } from './OfferTableHeader';
 import { OfferTableRow } from "./OfferTableRow";
 
-import { OFFER_TABLE_HEADERS } from "./offers-table-constants";
+import { OFFER_TABLE_HEADERS } from "./offers-constants";
 import { Offer } from '../../models';
 
 interface IOffersTableBodyProps {

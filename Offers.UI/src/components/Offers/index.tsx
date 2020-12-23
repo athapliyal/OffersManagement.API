@@ -14,7 +14,7 @@ import { onDeleteToastSuccess, onDeleteToastFailure, onCopyToastSuccess, onCopyT
 
 import "./offers.scss";
 
-const OffersTable: React.FC = () => {
+export const Offers: React.FC = () => {
   const [offerSearch, setOfferSearch] = useState<OfferSearchResults>();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -107,5 +107,3 @@ const OffersTable: React.FC = () => {
 
   return <Preloader />;
 };
-
-export default OffersTable;
