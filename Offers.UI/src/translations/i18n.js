@@ -1,7 +1,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import {translations} from './translations';
+import { translations } from './translations';
 
 // the translations
 const resources = translations;
@@ -19,4 +19,4 @@ i18n
     }
   });
 
-  export default i18n;
+export default i18n;

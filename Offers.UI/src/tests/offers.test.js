@@ -2,8 +2,8 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Offers } from "../../components/Offers/index";
-import { OFFER_TABLE_HEADERS } from "../../components/Offers/offers-constants";
+import { Offers } from "../components/Offers";
+import { OFFER_TABLE_HEADERS } from "../components/Offers/offers-constants";
 
 const renderWithRouter = (ui, { route = "/" } = {}) => {
   window.history.pushState({}, "Test page", route);
