@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext, SET_IS_AUTHENTICATED_FAIL } from '../../store/authentication';
 import { navigationItems } from "./navigation-config";
 
-import logo from '../../images/logo_campaigns.png';
+import logo from '../../assets/logo_campaigns.png';
 import './header.scss';
 
 export const Header: React.FC = () => {

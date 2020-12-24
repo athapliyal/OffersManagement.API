@@ -23,7 +23,7 @@ export const GetOffersData: OfferSearchResults = {
         id: "3",
         title: "Offer number 3",
         description: "This offer is for food",
-        category: 1,
+        category: 2,
         startDate: new Date(2021, 1, 24, 10, 33, 30, 0),
         endDate: new Date(2021, 2, 25, 10, 33, 30, 0),
         status: 3

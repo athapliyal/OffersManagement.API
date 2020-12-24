@@ -1,7 +1,7 @@
 import { LoginForm } from './LoginForm';
 
-import campaignsBg from '../../images/bg-campaigns.jpg';
-import logo from '../../images/campaigns-logo.png';
+import campaignsBg from '../../assets/bg-campaigns.jpg';
+import logo from '../../assets/campaigns-logo.png';
 
 import './login-screen.scss';
 

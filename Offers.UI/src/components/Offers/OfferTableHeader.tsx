@@ -8,9 +8,11 @@ export const OfferTableHeader: React.FC = () => {
         <div className="offer-table-header-content">
           <h1>All Offers</h1>
 
-          <Button className="create-offer" variant="primary">
-            <Link to="/new-offer">New offer</Link>
+          <Link to="/new-offer">
+            <Button className="create-offer" variant="primary">
+              New offer
           </Button>
+          </Link>
           <Link to="/bulk-import">
             <Button className="import-offer" variant="outline-primary">
               Import offers

@@ -46,15 +46,19 @@ describe("Offers page", () => {
     expect(importOfferButton).toBeInTheDocument();
   });
 
-  test("should show the offers table headers when offers are retrieved", async () => {
+  test("should show the offers table headers and offers when offer data is retrieved", async () => {
     // Arrange
     renderWithRouter(<Offers />);
 
     // Act
-    const title = await screen.findByText(OFFER_TABLE_HEADERS[0]);
-    const category = await screen.findByText(OFFER_TABLE_HEADERS[1]);
+    const titleHeader = await screen.findByText(OFFER_TABLE_HEADERS[0]);
+    const categoryHeader = await screen.findByText(OFFER_TABLE_HEADERS[1]);
+    const title = await screen.findByText("Offer number 1");
+    const category = await screen.findByText("Food");
 
     // Assert
+    expect(titleHeader).toBeInTheDocument();
+    expect(categoryHeader).toBeInTheDocument();
     expect(title).toBeInTheDocument();
     expect(category).toBeInTheDocument();
   });
