@@ -8,7 +8,7 @@ import { OFFERS_API_BASE_URL } from './service-constants';
 export const getOffers = async (pageNumber: number, pageSize: number) => {
     const response = await fetch(`${OFFERS_API_BASE_URL}?PageNumber=${pageNumber}&PageSize=${pageSize}`);
     const data: OfferSearchResults = await response.json();
-
+    
     return data;
 }
 

@@ -7,11 +7,10 @@ export const OfferTableHeader: React.FC = () => {
       <div className="offer-table-header">
         <div className="offer-table-header-content">
           <h1>All Offers</h1>
-          <Link to="/new-offer">
-            <Button className="create-offer" variant="primary">
-              New offer
-            </Button>
-          </Link>
+
+          <Button className="create-offer" variant="primary">
+            <Link to="/new-offer">New offer</Link>
+          </Button>
           <Link to="/bulk-import">
             <Button className="import-offer" variant="outline-primary">
               Import offers
