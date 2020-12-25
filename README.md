@@ -3,10 +3,10 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 
 ## Features (to be refined and categorised)
 - Web Accesibility
-- Forms with Validations - complex forms
-- Complex graphs and Date picker
-- Complex calendar component
-- State management using hooks
+- Forms with client and server validations
+- Date and time picker component
+- Calendar component
+- State management using hooks - no more redux
 - Pagination
 - Bundle size
 - Deployment
@@ -22,7 +22,6 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 - BEM styling, SASS, mixins, Scoped SCSS
 - Azure deployment
 - List of component libraries
-- Progressive Web App
 - 404 Page
 
 
