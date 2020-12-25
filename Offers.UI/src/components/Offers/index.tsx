@@ -28,13 +28,18 @@ export const Offers: React.FC = () => {
 
   const retrieveOffers = useCallback(() => {
     getOffers(currentPage, MAX_PAGE_SIZE).then((offerSearch) => {
-      if (mountedRef.current) {
+
+      // only set state if component is mounted
+      if (mountedRef.current) {        
         setOfferSearch(offerSearch);
       }
+      
     });
   }, [currentPage]);
 
   useEffect(() => {
+    mountedRef.current = true;
+    
     retrieveOffers();
 
     //component unmount

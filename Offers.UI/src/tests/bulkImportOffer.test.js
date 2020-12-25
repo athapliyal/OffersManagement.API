@@ -45,15 +45,4 @@ describe("Bulk import offer", () => {
         // Assert
         expect(heading).toBeInTheDocument();     
     });
-
-    test('should upload the file when dropped in the Dropzone', () => {
-        // Arrange
-        renderWithRouter(<BulkImporterWithTranslations />);
-
-        // Act
-        screen.debug();
-
-        // Assert
-        
-    });
 });
