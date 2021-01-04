@@ -80,6 +80,7 @@ export const Offers: React.FC = () => {
 
     res
       .then(() => {
+        retrieveOffers();
         onCopyToastSuccess();
       })
       .catch((err) => {
