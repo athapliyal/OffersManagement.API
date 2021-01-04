@@ -49,3 +49,9 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 
 ### Good to have
 - Animation libraries
+
+### Pending stuff
+- Authentication using http-only cookies on UI and API
+- Animation example
+- Cypress tests
+- Presentation slides
