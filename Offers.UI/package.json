@@ -37,7 +37,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run --browser chrome --headless",
+    "test:e2e": "start-server-and-test start 3000 cypress",
+    "test:e2e:ci": "start-server-and-test start 3000 cypress:headless"
   },
   "eslintConfig": {
     "extends": [
@@ -58,11 +62,14 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/cypress": "^7.0.3",
     "@types/react-datepicker": "^3.1.2",
     "@types/react-paginate": "^6.2.1",
     "@types/react-router-dom": "^5.1.6",
+    "cypress": "^6.2.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "msw": "^0.24.2",
-    "source-map-explorer": "^2.5.1"
+    "source-map-explorer": "^2.5.1",
+    "start-server-and-test": "^1.11.7"
   }
 }

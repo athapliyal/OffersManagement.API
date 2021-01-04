@@ -57,3 +57,4 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 - Responsiveness
 - Host React project on Azure
 - Presentation slides
+- Infinite scroll
