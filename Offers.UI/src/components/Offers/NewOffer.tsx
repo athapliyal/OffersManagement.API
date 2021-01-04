@@ -9,8 +9,6 @@ import { uploadOffer } from '../../services/offers-service';
 import { NewOfferModel } from '../../models/NewOfferModel';
 
 import { onNewOfferToastSuccess, onNewOfferToastUpload } from '../../notifications/toast-config';
-
-import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer } from "react-toastify";
 
 export const NewOffer: React.FC = () => {
