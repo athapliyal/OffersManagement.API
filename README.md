@@ -54,4 +54,6 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 - Authentication using http-only cookies on UI and API
 - Animation example
 - Cypress tests
+- Responsiveness
+- Host React project on Azure
 - Presentation slides
