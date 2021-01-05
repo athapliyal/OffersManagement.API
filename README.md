@@ -57,3 +57,5 @@ Plexure CCC Portal POC using React + Typescript and .NET Core
 - Host React project on Azure
 - Presentation slides
 - Infinite scroll
+- Husky pre-push hook for tests and linting
+- Read about security against XSS and CSRF attacks
