@@ -55,6 +55,7 @@ export const LoginForm: React.FC = () => {
             className="form-control"
             name="password"
             id="password"
+            type="password"
             onChange={(e) => setValue("password", e.target.value)}
             ref={register({
               required: "Please enter password",
