@@ -1,11 +1,14 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Offers.API.Business;
 using Offers.API.Repository;
+using System.Threading.Tasks;
 
 namespace Offers.API
 {
@@ -28,6 +31,34 @@ namespace Offers.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Offers.API", Version = "v1" });
             });
+
+            services.AddAuthentication(i =>
+            {
+                i.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                i.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                i.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                i.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+               .AddJwtBearer(options =>
+               {                   
+                   options.SaveToken = true;
+                   options.Events = new JwtBearerEvents();
+                   options.Events.OnMessageReceived = context => {
+
+                       if (context.Request.Cookies.ContainsKey("X-Access-Token"))
+                       {
+                           context.Token = context.Request.Cookies["X-Access-Token"];
+                       }
+
+                       return Task.CompletedTask;
+                   };
+               })
+               .AddCookie(options =>
+               {
+                   options.Cookie.SameSite = SameSiteMode.Strict;
+                   options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                   options.Cookie.IsEssential = true;
+               });
 
             services.AddTransient<IOfferRepository, MockOfferRepository>();
             services.AddTransient<IOffersBulkFileProcessor, OffersBulkFileProcessor>();
