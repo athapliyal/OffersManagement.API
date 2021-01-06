@@ -7,7 +7,7 @@ import { AuthContext, SET_IS_AUTHENTICATED_FAIL } from '../../store/authenticati
 import { navigationItems } from "./navigation-config";
 
 import logo from '../../assets/logo_campaigns.png';
-import './header.scss';
+import styles from './header.module.scss';
 
 export const Header: React.FC = () => {
   const { authState, dispatch } = useContext(AuthContext);
@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Link to="/">
-                <img className="header-logo" src={logo} alt="logo" />
+                <img className={styles.headerLogo} src={logo} alt="logo" />
               </Link>
               {navigationItems.map((item) => (
                 <Link key={item.title} className={item.className} to={item.url}>
