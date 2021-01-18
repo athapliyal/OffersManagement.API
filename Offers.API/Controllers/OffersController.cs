@@ -37,6 +37,32 @@ namespace Offers.API.Controllers
             return Ok(offer);
         }
 
+        [HttpGet]
+        [Route("addmultipleoffers")]
+        public async Task<IActionResult> AddMultipleOffers()
+        {      
+            if (MockOffers.LoadMoreOffersForInfiniteScroll)
+            {
+                for (int i = 100; i < 20_000; i++)
+                {
+                    var newOffer = new Offer
+                    {
+                        Id = GenerateRandomId(),
+                        Title = $"Offer with title {i}",
+                        Description = $"Offer with description {i}",
+                        StartDate = new DateTime(),
+                        EndDate = new DateTime(),
+                        Category = i < 5000 ? Enums.OfferCategory.Clothing : Enums.OfferCategory.Food,
+                        Status = i < 5000 ? Enums.OfferStatus.Pending : Enums.OfferStatus.Published
+                    };
+
+                    await _offerRepository.UploadOfferWithNoDelay(newOffer);
+                }
+            }
+
+            return Ok();
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddOffer([FromBody] OfferDto offer)
         {

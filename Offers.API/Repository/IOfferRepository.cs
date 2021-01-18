@@ -37,6 +37,13 @@ namespace Offers.API.Repository
         Task UploadOffer(Offer offer);
 
         /// <summary>
+        ///     Upload a single offer with no delay
+        /// </summary>
+        /// <param name="offer"></param>
+        /// <returns></returns>
+        Task UploadOfferWithNoDelay(Offer offer);
+
+        /// <summary>
         ///     Delete an offer
         /// </summary>
         /// <param name="id"></param>

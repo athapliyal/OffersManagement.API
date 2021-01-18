@@ -7,7 +7,7 @@ namespace Offers.API.Models
 {
     public class OffersResourceParameters
     {
-        const int MAX_PAGE_SIZE = 10;
+        const int MAX_PAGE_SIZE = 100;
 
         public int PageNumber { get; set; } = 1;
 

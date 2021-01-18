@@ -9,6 +9,7 @@ namespace Offers.API.Repository
     public static class MockOffers
     {
         public static List<Offer> ListOfOffer { get; set; } = new List<Offer>();
+        public static bool LoadMoreOffersForInfiniteScroll = true;
 
         static MockOffers()
         {
